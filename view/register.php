@@ -27,7 +27,7 @@
                             <form method="POST" action="#" class="mt-8 space-y-6">
                                 <div class="rounded-md shadow-sm">
                                     <div class="mt-4">
-                                        <label class="sr-only" for="name">Nama</label>
+                                        <label class="" for="name">Nama</label>
                                         <input
                                             placeholder="Masukkan Nama"
                                             class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
@@ -38,7 +38,7 @@
                                         />
                                     </div>
                                     <div class="mt-4">
-                                        <label class="sr-only" for="email">Email</label>
+                                        <label class="" for="email">Email</label>
                                         <input
                                             placeholder="Masukkan Email"
                                             class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
@@ -49,7 +49,18 @@
                                         />
                                     </div>
                                     <div class="mt-4">
-                                        <label class="sr-only" for="telepon">No Telepon</label>
+                                        <label class="" for="nik">NIK</label>
+                                        <input
+                                            placeholder="Masukkan NIK"
+                                            class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
+                                            autocomplete="nik"
+                                            type="text"
+                                            name="nik"
+                                            id="nik"
+                                        />
+                                    </div>
+                                    <div class="mt-4">
+                                        <label class="" for="telepon">No Telepon</label>
                                         <input
                                             placeholder="Masukkan No Telepon"
                                             class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
@@ -59,38 +70,42 @@
                                             id="telepon"
                                         />
                                     </div>
-                                    <div class="flex relative mt-4">
-                                        <label class="sr-only" for="password">Password</label>
-                                        <input
-                                            placeholder="Masukkan Password"
-                                            class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
-                                            autocomplete="current-password"
-                                            type="password"
-                                            name="password"
-                                            id="password"
-                                        />
-                                        <div class="absolute right-0 mr-4 top-1/2 transform -translate-y-1/2">
-                                            <input type="checkbox" id="toggle-password" class="hidden"/>
-                                            <label for="toggle-password" class="cursor-pointer">
-                                                <svg viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"></path></svg>
-                                            </label>
+                                    <div class="flex flex-col relative mt-4">
+                                        <label class="" for="password">Password</label>
+                                            <div class="relative w-full">
+                                            <input
+                                                placeholder="Masukkan Password"
+                                                class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
+                                                autocomplete="current-password"
+                                                type="password"
+                                                name="password"
+                                                id="password"
+                                            />
+                                            <div class="absolute right-0 mr-4 top-1/2 transform -translate-y-1/2">
+                                                <input type="checkbox" id="toggle-password" class="hidden"/>
+                                                <label for="toggle-password" class="cursor-pointer">
+                                                    <svg viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"></path></svg>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="flex relative mt-4">
-                                        <label class="sr-only" for="password_confirmation">Konfirmasi Password</label>
-                                        <input
-                                            placeholder="Masukkan Konfirmasi Password"
-                                            class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
-                                            autocomplete="current-password"
-                                            type="password"
-                                            name="password_confirmation"
-                                            id="password_confirmation"
-                                        />
-                                        <div class="absolute right-0 mr-4 top-1/2 transform -translate-y-1/2">
-                                            <input type="checkbox" id="toggle-password" class="hidden"/>
-                                            <label for="toggle-password" class="cursor-pointer">
-                                                <svg viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"></path></svg>
-                                            </label>
+                                    <div class="flex flex-col relative mt-4">
+                                        <label class="" for="password_confirmation">Konfirmasi Password</label>
+                                        <div class="relative w-full">
+                                            <input
+                                                placeholder="Masukkan Konfirmasi Password"
+                                                class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
+                                                autocomplete="current-password"
+                                                type="password"
+                                                name="password_confirmation"
+                                                id="password_confirmation"
+                                            />
+                                            <div class="absolute right-0 mr-4 top-1/2 transform -translate-y-1/2">
+                                                <input type="checkbox" id="toggle-password" class="hidden"/>
+                                                <label for="toggle-password" class="cursor-pointer">
+                                                    <svg viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"></path></svg>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>                                    
                                 </div>
@@ -120,7 +135,7 @@
                             <form method="POST" action="#" class="mt-8 space-y-6">
                                 <div class="rounded-md shadow-sm">
                                     <div class="mt-4">
-                                        <label class="sr-only" for="name">Nama</label>
+                                        <label class="" for="name">Nama</label>
                                         <input
                                             placeholder="Masukkan Nama"
                                             class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
@@ -131,7 +146,7 @@
                                         />
                                     </div>
                                     <div class="mt-4">
-                                        <label class="sr-only" for="email">Email</label>
+                                        <label class="" for="email">Email</label>
                                         <input
                                             placeholder="Masukkan Email"
                                             class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
@@ -142,7 +157,18 @@
                                         />
                                     </div>
                                     <div class="mt-4">
-                                        <label class="sr-only" for="noSurat">Nomor Surat</label>
+                                        <label class="" for="nik">NIK</label>
+                                        <input
+                                            placeholder="Masukkan NIK"
+                                            class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
+                                            autocomplete="nik"
+                                            type="text"
+                                            name="nik"
+                                            id="nik"
+                                        />
+                                    </div>
+                                    <div class="mt-4">
+                                        <label class="" for="noSurat">Nomor Surat</label>
                                         <input
                                             placeholder="Masukkan Nomor Surat"
                                             class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
@@ -152,21 +178,26 @@
                                             id="noSurat"
                                         />
                                     </div>
+                                    
                                     <div class="mt-4">
-                                        <label class="sr-only" for="wilayah">Nama Wilayah</label>
+                                        <label class="" for="wilayah">Nama Wilayah</label>
                                         <select
                                             class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
                                             name="wilayah"
                                             id="wilayah"
                                         >
-                                            <option value="" hidden>Pilih Nama Wilayah</option>
-                                            <option value="1">Sumbersari</option>
-                                            <option value="2">Wuluhan</option>
-                                            <option value="3">Balung</option>
+                                            <option value="" hidden>Pilih Wilayah</option>
+                                            <option value="1">1 (Balung, Wuluhan, Jombang, Kencong, Rambipuji)</option>
+                                            <option value="2">2 (Mumbulsari, Ambulu, Tempurejo, Jenggawah Ajung)</option>
+                                            <option value="3">3 (Tanggul, Bangsalsari, Sumberbaru)</option>
+                                            <option value="4">4 (Sukowono, Jelbuk, Kalisat, Ledokombo,, Sumberjambe, Arjasa, Silo)</option>
+                                            <option value="5">5 (Puger)</option>
+                                            <option value="6">6 (Patrang, Sukorambi, Mangli, Kaliwates, Arjasa)</option>
+                                            <option value="7">7 (Sumbersari, Mayang, Pakusari, Tempurejo, Mumbulsari)</option>
                                         </select>
                                     </div>
                                     <div class="mt-4">
-                                        <label class="sr-only" for="telepon">No Telepon</label>
+                                        <label class="" for="telepon">No Telepon</label>
                                         <input
                                             placeholder="Masukkan No Telepon"
                                             class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
@@ -176,38 +207,42 @@
                                             id="telepon"
                                         />
                                     </div>
-                                    <div class="flex relative mt-4">
-                                        <label class="sr-only" for= "password">Password</label>
-                                        <input
-                                            placeholder="Masukkan Password"
-                                            class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
-                                            autocomplete="current-password"
-                                            type="password"
-                                            name="password"
-                                            id="password"
-                                        />
-                                        <div class="absolute right-0 mr-4 top-1/2 transform -translate-y-1/2">
-                                            <input type="checkbox" id="toggle-password" class="hidden"/>
-                                            <label for="toggle-password" class="cursor-pointer">
-                                                <svg viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"></path></svg>
-                                            </label>
+                                    <div class="flex flex-col relative mt-4">
+                                        <label class="" for= "password">Password</label>
+                                        <div class="relative w-full">
+                                            <input
+                                                placeholder="Masukkan Password"
+                                                class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
+                                                autocomplete="current-password"
+                                                type="password"
+                                                name="password"
+                                                id="password"
+                                            />
+                                            <div class="absolute right-0 mr-4 top-1/2 transform -translate-y-1/2">
+                                                <input type="checkbox" id="toggle-password" class="hidden"/>
+                                                <label for="toggle-password" class="cursor-pointer">
+                                                    <svg viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"></path></svg>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="flex relative mt-4">
-                                        <label class="sr-only" for="password_confirmation">Konfirmasi Password</label>
-                                        <input
-                                            placeholder="Masukkan Konfirmasi Password"
-                                            class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
-                                            autocomplete="current-password"
-                                            type="password"
-                                            name="password_confirmation"
-                                            id="password_confirmation"
-                                        />
-                                        <div class="absolute right-0 mr-4 top-1/2 transform -translate-y-1/2">
-                                            <input type="checkbox" id="toggle-password" class="hidden"/>
-                                            <label for="toggle-password" class="cursor-pointer">
-                                                <svg viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"></path></svg>
-                                            </label>
+                                    <div class="flex flex-col relative mt-4">
+                                        <label class="" for="password_confirmation">Konfirmasi Password</label>
+                                        <div class="relative w-full">
+                                            <input
+                                                placeholder="Masukkan Konfirmasi Password"
+                                                class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
+                                                autocomplete="current-password"
+                                                type="password"
+                                                name="password_confirmation"
+                                                id="password_confirmation"
+                                            />
+                                            <div class="absolute right-0 mr-4 top-1/2 transform -translate-y-1/2">
+                                                <input type="checkbox" id="toggle-password" class="hidden"/>
+                                                <label for="toggle-password" class="cursor-pointer">
+                                                    <svg viewBox="0 0 576 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM144 256a144 144 0 1 1 288 0 144 144 0 1 1 -288 0zm144-64c0 35.3-28.7 64-64 64c-7.1 0-13.9-1.2-20.3-3.3c-5.5-1.8-11.9 1.6-11.7 7.4c.3 6.9 1.3 13.8 3.2 20.7c13.7 51.2 66.4 81.6 117.6 67.9s81.6-66.4 67.9-117.6c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3z"></path></svg>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>                                    
                                 </div>

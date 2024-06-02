@@ -92,4 +92,9 @@
   opacity: 0;
   transform: translateX(-50px);
 }
- 
+
+.preview {
+  scrollbar-width: none;
+}
+
+

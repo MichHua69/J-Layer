@@ -10,12 +10,12 @@
 </head>
 <body>
     <section class="bg-[#FFFAE6]">
-        <div class="grid max-w-screen-xl px-4 pt-28 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:relative">
-            <div class="flex justify-between absolute top-8 items-center lg:w-full" id="navbar-menu">
+        <div class="grid max-w-screen-xl px-4 pt-28 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 relative">
+            <div class="flex justify-between absolute top-8 items-center w-full px-4" id="navbar-menu">
                 <div class="bg-[#FFC100] rounded-full h-full">
                     <img src="assets/images/logo.png" class="h-20" alt="">
                 </div>
-                <div class="space-x-4">
+                <div class="space-x-2">
                     <button id='login-btn' onclick="window.location.href='<?= urlpath('login')?>'">Login</button>
                     <button id='register-btn' onclick="window.location.href='<?= urlpath('register')?>'">Register</button>
                 </div>

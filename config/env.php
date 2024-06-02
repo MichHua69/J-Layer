@@ -1,6 +1,5 @@
 <?php
-function parseEnv($filePath)
-{
+function parseEnv($filePath) {
     $contents = file_get_contents($filePath);
     $lines = explode("\n", $contents);
     $env = [];
@@ -12,7 +11,6 @@ function parseEnv($filePath)
             $env[$key] = $value;
         }
     }
-
     return $env;
 }
 

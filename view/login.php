@@ -12,20 +12,18 @@
     <section class="bg-[#FFFAE6] h-screen my-auto">
         <div class=" max-w-screen-xl px-4 pt-28 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:pt-28">
         <div class="form-container mt-4">
-                <!-- Peternak Form -->
                 <div class="form-content form--1">
                     <div class="bg-[#FFBB70] rounded-lg shadow-xl overflow-hidden mb-24">
                         <div class="p-8">
                             <h2 class="text-center text-3xl font-extrabold text-white">Masuk</h2>
-                            <form method="POST" action="#" class="mt-8 space-y-6">
+                            <form method="POST" action="<?= urlpath('login') ?>" class="mt-8 space-y-6">
                                 <div class="rounded-md shadow-sm">
                                     <div class="flex flex-col mt-4">
                                         <label class="text-white" for="email">Email</label>
                                         <input
                                             placeholder="Masukkan Email"
                                             class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
-                                            autocomplete="email"
-                                            type="email"
+                                            type="text  "
                                             name="email"
                                             id="email"
                                         />
@@ -36,7 +34,6 @@
                                             <input
                                                 placeholder="Masukkan Password"
                                                 class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
-                                                autocomplete="current-password"
                                                 type="password"
                                                 name="password"
                                                 id="password"
@@ -56,12 +53,6 @@
                                         class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#FF5F00] hover:bg-[#FFFAE6] hover:text-[#FF5F00]"
                                         type="submit"
                                     >
-                                        Masuk
-                                    </button>
-                                    <button
-                                        class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#FF5F00] hover:bg-[#FFFAE6] hover:text-[#FF5F00]"
-                                        type="button"
-                                        onclick="window.location.href='<?= urlpath('dashboard')?>'">
                                         Masuk
                                     </button>
                                 </div>
