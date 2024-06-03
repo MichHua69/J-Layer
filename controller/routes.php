@@ -20,6 +20,12 @@ Router::url('dashboard', 'get', function () {
 Router::url('pengajuan', 'get', function () {
      return view('pengajuan'); 
 }); 
+Router::url('detailpengajuan', 'get', function () {
+     return view('detailpengajuan'); 
+}); 
+Router::url('editpengajuan', 'get', function () {
+     return view('editpengajuan'); 
+}); 
 Router::url('berita', 'get', function () {
      return view('berita'); 
 }); 

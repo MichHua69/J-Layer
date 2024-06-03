@@ -1,3 +1,4 @@
+<?php $role = $_SESSION['role'];?>
 <nav class="bg-[#FFC100] px-4 py-2 fixed w-full z-40">
     <div class="container mx-auto grid grid-cols-3 gap-4 relative items-center">
         <img src="assets/images/logo.png" class="h-16" alt="">
@@ -10,24 +11,11 @@
                 </svg>
             </button>
         </div>
-        <?php if ($role === 1): ?>
-        <div class="hidden lg:flex lg:gap-4 space-x-4 lg:justify-center" id="navbar-menu">
-            <a href="<?= urlpath('dashboard')?>" class="button-navbar text-white text-lg hover:text-white">Pengajuan</a>
-            <a href="<?= urlpath('berita')?>" class="button-navbar text-white text-lg hover:text-white">Berita</a>
-        </div>
-        <?php elseif ($role === 2): ?>
+
         <div class="hidden lg:flex lg:gap-4 space-x-4 lg:justify-center" id="navbar-menu">
             <a href="<?= urlpath('dashboard')?>" class="button-navbar text-white text-lg hover:text-white">Dashboard</a>
-            <!-- <a href="#Berita" class="button-navbar text-white text-lg hover:text-white" onclick="smoothScrollTo('#Berita')">Berita</a> -->
             <a href="<?= urlpath('pengajuan')?>" class="button-navbar text-white text-lg hover:text-white">Pengajuan</a>
         </div>
-        <?php elseif ($role === 3): ?>
-        <div class="hidden lg:flex lg:gap-4 space-x-4 lg:justify-center" id="navbar-menu">
-            <a href="<?= urlpath('dashboard')?>" class="button-navbar text-white text-lg hover:text-white">Dashboard</a>
-            <!-- <a href="#Berita" class="button-navbar text-white text-lg hover:text-white" onclick="smoothScrollTo('#Berita')">Berita</a> -->
-            <a href="<?= urlpath('pengajuan')?>" class="button-navbar text-white text-lg hover:text-white">Pengajuan</a>
-        </div>
-        <?php endif; ?>
 
         <div class="hidden lg:flex lg:justify-end">
             <button id='logout-btn' class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="window.location.href='<?= urlpath('logout')?>'">Logout</button>
