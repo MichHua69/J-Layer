@@ -24,7 +24,7 @@
                     <div class="bg-[#FFBB70] rounded-lg shadow-xl overflow-hidden mb-24">
                         <div class="p-8">
                             <h2 class="text-center text-3xl font-extrabold text-white">Register Peternak</h2>
-                            <form method="POST" action="#" class="mt-8 space-y-6">
+                            <form method="POST" action="<?=urlpath('register')?>" class="mt-8 space-y-6">
                                 <div class="rounded-md shadow-sm">
                                     <div class="mt-4">
                                         <label class="" for="name">Nama</label>
@@ -132,7 +132,7 @@
                     <div class="bg-[#FFBB70] rounded-lg shadow-xl overflow-hidden">
                         <div class="p-8">
                             <h2 class="text-center text-3xl font-extrabold text-white">Register Kepala Kelompok Ternak</h2>
-                            <form method="POST" action="#" class="mt-8 space-y-6">
+                            <form method="POST" action="<?=urlpath('register')?>" class="mt-8 space-y-6">
                                 <div class="rounded-md shadow-sm">
                                     <div class="mt-4">
                                         <label class="" for="name">Nama</label>
@@ -216,7 +216,7 @@
                                                 autocomplete="current-password"
                                                 type="password"
                                                 name="password"
-                                                id="password"
+                                                id="password_kepala"
                                             />
                                             <div class="absolute right-0 mr-4 top-1/2 transform -translate-y-1/2">
                                                 <input type="checkbox" id="toggle-password" class="hidden"/>
@@ -235,7 +235,7 @@
                                                 autocomplete="current-password"
                                                 type="password"
                                                 name="password_confirmation"
-                                                id="password_confirmation"
+                                                id="password_confirmation_kepala"
                                             />
                                             <div class="absolute right-0 mr-4 top-1/2 transform -translate-y-1/2">
                                                 <input type="checkbox" id="toggle-password" class="hidden"/>
@@ -292,12 +292,16 @@
     <script>
         const togglePassword = document.querySelector('#toggle-password');
         const password = document.querySelector('#password');
+        const passwordKepala = document.querySelector('#password_kepala');
         const togglePasswordConfirm = document.querySelector('#toggle-password-confirm');
         const passwordConfirm = document.querySelector('#password_confirmation');
+        const passwordConfirmKepala = document.querySelector('#password_confirmation_kepala');
 
         togglePassword.addEventListener('change', function() {
             password.type = this.checked ? 'text' : 'password';
             passwordConfirm.type = this.checked ? 'text' : 'password';
+            passwordKepala.type = this.checked? 'text' : 'password';
+            passwordConfirmKepala.type = this.checked? 'text' : 'password';
         });
     </script>
     <style>

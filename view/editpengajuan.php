@@ -7,16 +7,16 @@
     <script src="https://unpkg.com/flowbite@1.4.1/dist/flowbite.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
     <title>J-Layer</title>
 </head>
 <body>
     <?php include 'layouts/navbar.php' ?>
     <section class="bg-[#FFFAE6] min-h-screen">
         <div class="max-w-screen-xl px-4 pt-36 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:pt-36">
-
-            <h1 class="text-center font-bold mb-8 text-3xl lg:text-5xl">Ubah Pengajuan</h1>
+            <h1 class="text-center font-bold mb-8 text-3xl lg:text-5xl">Edit Pengajuan</h1>
             <div class="bg-white shadow-md rounded-lg p-8 mx-auto w-full lg:w-full">
-                <form method="POST" action="" class=" space-y-6">
+                <form method="POST" action="<?php urlpath('editpengajuan').'?id='.$pengajuan['id']?>" class=" space-y-6" enctype="multipart/form-data">
                     <div class="rounded-md shadow-sm">
                         <div class="mt-4">
                             <label class="font-semibold" for="alamat">Alamat</label>
@@ -27,12 +27,26 @@
                                 type="text"
                                 name="alamat"
                                 id="alamat"
+                                value="<?= $pengajuan['alamat']?>"
                             />
+                        </div>
+                        
+                        <div class="mt-4">
+                            <label class="font-semibold" for="jumlah_populasi">Jumlah Populasi Ayam</label>
+                            <select class="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-gray-500 focus:z-10 sm:text-sm" name="jumlah_populasi" id="jumlah_populasi">
+                                <?php foreach ($jumlah_populasi as $jumlah) { ?>
+                                <option value="<?= $pengajuan['id_jumlah_populasi_ayam']['id'] ?>" selected hidden><?= $pengajuan['id_jumlah_populasi_ayam']['jumlah'] ?></option>
+                                    <option value="<?= $jumlah['id'] ?>"><?= $jumlah['jumlah'] ?></option>
+                                <?php } ?>
+                            </select>
                         </div>
                         <div class="mt-4">
                             <label class="font-semibold" for="foto_peternakan">Foto Peternakan</label>
                             <div class=" h-full w-full lg:w-2/3 lg:h-72 overflow-y-scroll rounded-md preview mb-2" id="foto_peternakan-container" style="scrollbar-width: none;">
-                                <img id="foto_peternakan-preview" src="assets/images/ayam.jpg" alt="Foto Peternakan" class=" w-full object-cover object-top" />
+                                <img id="foto_peternakan-preview" src="assets/pengajuan/foto_peternakan/<?= $pengajuan['foto_peternakan']?>" alt="Foto Peternakan" class="w-full object-cover object-top" />
+                            </div>
+                            <div id="file-info" class="mt-2 text-sm text-gray-600">
+                                File saat ini: <?= basename($pengajuan['foto_peternakan']) ?>
                             </div>
                             <div class="relative w-full mb-4 mt-1">
                                 <input
@@ -48,7 +62,10 @@
                         <div class="mt-4">
                             <label class="font-semibold" for="foto_usaha">Foto Surat Usaha</label>
                             <div class=" h-full w-full lg:w-2/3 lg:h-72 overflow-y-scroll rounded-md preview mb-2" id="foto_usaha-container" style="scrollbar-width: none;">
-                                <img id="foto_usaha-preview" src="assets/images/ayam.jpg" alt="Foto Surat Usaha" class=" w-full object-cover object-top" />
+                                <img id="foto_usaha-preview" src="assets/pengajuan/foto_usaha/<?= $pengajuan['foto_surat_usaha']?>" alt="Foto Surat Usaha" class=" w-full object-cover object-top" />
+                            </div>
+                            <div id="file-info" class="mt-2 text-sm text-gray-600">
+                                File saat ini: <?= basename($pengajuan['foto_surat_usaha']) ?>
                             </div>
                             <div class="relative w-full mb-4 mt-1">
                                 <input
@@ -57,6 +74,7 @@
                                     type="file"
                                     class="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-gray-500 focus:z-10 sm:text-sm"
                                     onchange="previewImageUsaha(this)"
+                                    value=""
                                 />
                             </div>
                         </div>
@@ -72,6 +90,7 @@
                                 id="jumlah_pakan"
                                 min="1"
                                 step="1"
+                                value="<?= $pengajuan['jumlah_pakan']?>"
                             />
                         </div>                             
                     </div>
@@ -87,7 +106,7 @@
                 </form>
             </div>
         </div>
-    </section>
+    </section>      
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-2">
@@ -96,16 +115,7 @@
         </div>
     </footer>
 
-    <script>
-        function toggleSidebar(id) {
-            const element = document.getElementById(id);
-            if (element.classList.contains('-translate-x-full')) {
-                element.classList.remove('-translate-x-full');
-            } else {
-                element.classList.add('-translate-x-full');
-            }
-        }
-    </script>
+
     <script>
         function previewImage(input) {
             const file = input.files[0];

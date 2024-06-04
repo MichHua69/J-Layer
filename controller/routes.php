@@ -10,22 +10,26 @@ Router::url('', 'get', function () {
 });
 Router::url('login', 'get', 'authController::login');
 Router::url('login', 'post', 'authController::login');
+Router::url('register', 'get', 'authController::register');
+Router::url('register', 'post', 'authController::register');
 Router::url('logout', 'get', 'authController::logout');
-Router::url('register', 'get', function () {
-    return view('register'); 
-}); 
-Router::url('dashboard', 'get', function () {
-     return view('dashboard'); 
-}); 
-Router::url('pengajuan', 'get', function () {
-     return view('pengajuan'); 
-}); 
-Router::url('detailpengajuan', 'get', function () {
-     return view('detailpengajuan'); 
-}); 
-Router::url('editpengajuan', 'get', function () {
-     return view('editpengajuan'); 
-}); 
+
+Router::url('dashboard', 'get', 'dashboardController::showDashboard');
+
+Router::url('pengajuan', 'get', 'pengajuanController::showPengajuan');
+
+Router::url('tambahpengajuan', 'get', 'pengajuanController::showTambahPengajuan');
+Router::url('tambahpengajuan', 'post', 'pengajuanController::storeTambahPengajuan');
+
+Router::url('editpengajuan', 'get', 'pengajuanController::showEditPengajuan');
+Router::url('editpengajuan', 'post', 'pengajuanController::storeEditPengajuan');
+
+Router::url('detailpengajuan', 'get', 'pengajuanController::showDetailPengajuan');
+Router::url('detailpengajuan', 'post', 'pengajuanController::storeDetailPengajuan');
+
+Router::url('konfirmasi', 'get', 'pengajuanController::showKonfirmasi');
+Router::url('konfirmasi', 'post', 'pengajuanController::storeKonfirmasi');
+
 Router::url('berita', 'get', function () {
      return view('berita'); 
 }); 

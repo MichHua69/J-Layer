@@ -10,5 +10,42 @@ class peternakModel {
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         return $result;
     }
+
+    public static function getRelation() {
+        global $conn;
+        $query = "SELECT * FROM `peternak`";
+        $result = $conn->query($query);
+        
+        $peternak = []; 
+        while ($row = $result->fetch_assoc()) {
+            $peternak[$row['id']] = $row; // Memetakan status validasi dengan indeks 'id'
+        }
+        return $peternak;
+    }
+
+    public static function getUser($email) {
+        global $conn;
+        $query = "SELECT * FROM `peternak` WHERE `email` =?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_assoc();
+        return $result;
+    }
+    public static function create($data=[]) {
+        global $conn;
+        $nama = $data['nama'];
+        $email = $data['email'];
+        $nik = intval($data['nik']);
+        $telepon = intval($data['telepon']);
+        $password = password_hash($data['password'], PASSWORD_DEFAULT);
+
+        $query = "INSERT INTO `peternak` (`nama`, `email`, `nik`, `no_telepon`, `password`) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("sssss", $nama, $email, $nik, $telepon, $password);
+        $stmt->execute();
+        
+        return true;
+    }
 }
 ?>

@@ -69,16 +69,7 @@
         </div>
     </footer>
 
-    <script>
-        function toggleSidebar(id) {
-            const element = document.getElementById(id);
-            if (element.classList.contains('-translate-x-full')) {
-                element.classList.remove('-translate-x-full');
-            } else {
-                element.classList.add('-translate-x-full');
-            }
-        }
-    </script>
+
     
 </body>
 </html>

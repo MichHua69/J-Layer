@@ -10,5 +10,16 @@ class dinas_peternakanModel {
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         return $result;
     }
+
+    public static function getUser($email)
+    {
+        global $conn;
+        $query = "SELECT * FROM `dinas_peternakan` WHERE email = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_assoc();
+        return $result;
+    }
 }
 ?>

@@ -1,4 +1,3 @@
-<?php $role = $_SESSION['role'];?>
 <nav class="bg-[#FFC100] px-4 py-2 fixed w-full z-40">
     <div class="container mx-auto grid grid-cols-3 gap-4 relative items-center">
         <img src="assets/images/logo.png" class="h-16" alt="">
@@ -25,14 +24,32 @@
 
 <!-- Sidebar -->
 <div id="sidebar-menu" class="fixed top-0 left-0 w-64 h-full bg-[#FFC100] transform -translate-x-full transition-transform lg:hidden z-50">
-    <div class="p-4">
+    <div class="p-4 h-full relative">
         <button class="text-white focus:outline-none mb-4" onclick="toggleSidebar('sidebar-menu')">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
         </button>
-        <a href="<?= urlpath('dashboard')?>" class="block text-white text-lg hover:text-white">Dashboard</a>
-            <a href="#" class="block text-white text-lg hover:text-white">Berita</a>
-            <a href="<?= urlpath('pengajuan')?>" class="block text-white text-lg hover:text-white">Pengajuan</a>
+        <div class="flex flex-col justify-between h-full">
+            <div class="flex flex-col gap-3">
+                <a href="<?= urlpath('dashboard')?>" class="block text-white text-lg hover:text-white">Dashboard</a>
+                <a href="<?= urlpath('pengajuan')?>" class="block text-white text-lg hover:text-white">Pengajuan</a>
+            </div>
+            <button id='logout-btn' class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded absolute bottom-4 right-4 left-4" onclick="window.location.href='<?= urlpath('logout')?>'">Logout</button>
+            <!-- <div class="absolute bottom-4">
+            </div> -->
+        </div>
+        
     </div>
 </div>
+
+<script>
+    function toggleSidebar(id) {
+        const element = document.getElementById(id);
+        if (element.classList.contains('-translate-x-full')) {
+            element.classList.remove('-translate-x-full');
+        } else {
+            element.classList.add('-translate-x-full');
+        }
+    }
+</script>
