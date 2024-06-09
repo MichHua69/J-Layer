@@ -185,10 +185,18 @@
                                     <span class="hidden lg:block">Ubah Pengajuan</span>
                                     </button>
                                 <?php elseif ($item['id_status_validasi'] == 2): ?>
-                                    <button class="font-semibold items-center gap-2 bg-red-500 text-white hover:bg-red-600 py-3 px-4 rounded-lg flex justify-center w-full text-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" id="Download-File--Streamline-Core" height="16" width="16"><desc>Download File Streamline Icon: https://streamlinehq.com</desc><g id="download-file"><path id="Vector" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" d="M12.5 12.5c0 0.2652 -0.1054 0.5196 -0.2929 0.7071s-0.4419 0.2929 -0.7071 0.2929h-9c-0.26522 0 -0.51957 -0.1054 -0.70711 -0.2929C1.60536 13.0196 1.5 12.7652 1.5 12.5v-11c0 -0.26522 0.10536 -0.51957 0.29289 -0.707107C1.98043 0.605357 2.23478 0.5 2.5 0.5H9L12.5 4v8.5Z" stroke-width="1"></path><path id="vector 377" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" d="m9 8 -2 2 -2 -2" stroke-width="1"></path><path id="vector 378" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" d="m7 10 0 -5.5" stroke-width="1"></path></g></svg>
+                                    <button class="font-semibold items-center gap-2 bg-red-500 text-white hover:bg-red-600 py-3 px-4 rounded-lg flex justify-center w-full text-center" onclick="window.open('<?= urlpath('validasi') . '?id=' . $item['id'] ?>', '_blank')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" id="Download-File--Streamline-Core" height="16" width="16">
+                                            <desc>Download File Streamline Icon: https://streamlinehq.com</desc>
+                                            <g id="download-file">
+                                                <path id="Vector" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" d="M12.5 12.5c0 0.2652 -0.1054 0.5196 -0.2929 0.7071s-0.4419 0.2929 -0.7071 0.2929h-9c-0.26522 0 -0.51957 -0.1054 -0.70711 -0.2929C1.60536 13.0196 1.5 12.7652 1.5 12.5v-11c0 -0.26522 0.10536 -0.51957 0.29289 -0.707107C1.98043 0.605357 2.23478 0.5 2.5 0.5H9L12.5 4v8.5Z" stroke-width="1"></path>
+                                                <path id="vector 377" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" d="m9 8 -2 2 -2 -2" stroke-width="1"></path>
+                                                <path id="vector 378" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" d="m7 10 0 -5.5" stroke-width="1"></path>
+                                            </g>
+                                        </svg>
                                         <span class="hidden lg:block">Unduh Surat</span>
-                                    </button>  
+                                    </button>
+
                                 <?php else: ?>
                                     <!-- <span class="text-red-600">Ditolak</span> -->
                                 <?php endif; ?>

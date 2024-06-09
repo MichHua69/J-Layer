@@ -4,13 +4,22 @@ class peternakModel {
     public static function getAll()
     {
         global $conn;
-        $query = "SELECT * FROM `dinas_peternakan`";
+        $query = "SELECT * FROM `peternak`";
         $stmt = $conn->prepare($query);
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         return $result;
     }
 
+    public static function getById($id) {
+        global $conn;
+        $query = "SELECT * FROM `peternak` WHERE `id` = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_assoc();
+        return $result;
+    }
     public static function getRelation() {
         global $conn;
         $query = "SELECT * FROM `peternak`";

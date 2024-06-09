@@ -7,6 +7,7 @@ include_once 'model/status_validasiModel.php';
 include_once 'model/status_konfirmasiModel.php';
 include_once 'model/peternakModel.php';
 include_once 'model/tempat_pengambilanModel.php';
+include 'assets/fpdf/fpdf.php';
 
 
 
@@ -273,19 +274,63 @@ class pengajuanController
                 'id' => intval($_GET['id']),
                 'id_status_validasi' => 2,
             ];
-            pengajuanModel::update($data);
-            
-            header('Location: '.urlpath('pengajuan'));
-            exit();
         } else {
             $data = [
                 'id' => intval($_GET['id']),
                 'id_status_validasi' => 3,
             ];
-            pengajuanModel::update($data);
-            header('Location: '.urlpath('pengajuan'));
-            exit();
         }
+        pengajuanModel::update($data);
+        $validasi = validasiModel::getById(intval($_GET['id']));
+        $pengajuan = pengajuanModel::getByIdvalidasi($validasi['id']);
+        $peternak = peternakModel::getById($pengajuan['id_peternak']);
+
+        $pdf = new FPDF();
+        $pdf->AddPage("", "A4");
+        $pdf->image('assets/images/validasi.jpg', 0, 0, 210);
+
+        // Tambahkan teks di posisi tertentu
+        $pdf->SetFont('Arial', '', 12);
+
+        $x = 70;
+        $y = 127;
+        $pdf->SetXY($x, $y);
+        $pdf->Text($x, $y, $peternak['nama']);
+
+        $x = 52;
+        $y = 133.5;
+        $pdf->SetXY($x, $y);
+        $pdf->Text($x, $y, $validasi['jumlah_pakan'].' kg');
+
+        $x = 63;
+        $y = 140;
+        $pdf->SetXY($x, $y);
+        $pdf->Text($x, $y, $validasi['tanggal_pengambilan']);
+
+        $x = 63;
+        $y = 146.2;
+        $pdf->SetXY($x, $y);
+        $pdf->Text($x, $y, $validasi['tempat_pengambilan']);
+
+        // Tentukan direktori dan nama file
+        $directory = 'assets/validasi/surat_validasi/';  // Ganti dengan path direktori yang diinginkan
+        $filename = $peternak['nama'].'-'.$validasi['id'].'.pdf';
+
+        // Pastikan direktori sudah ada atau buat jika belum ada
+        if (!file_exists($directory)) {
+            mkdir($directory, 0755, true);
+        }
+
+        // Simpan PDF ke direktori yang ditentukan
+        $pdf->Output($directory . $filename, 'F');
+        $data = [
+            'id' => intval($_GET['id']),
+            'surat_validasi' => $filename
+        ];
+
+        validasiModel::update($data);
+        header('Location: '.urlpath('pengajuan'));
+        exit();
 
     }
 
@@ -330,9 +375,40 @@ class pengajuanController
         pengajuanModel::update($data);
         header('Location: '.urlpath('pengajuan'));
         exit();
-        
+    }
 
+    public static function unduhValidasi() {
 
+        // Dapatkan ID dari parameter query
+        // $id = isset($_GET['id']) ? $_GET['id'] : null;
+        $validasi = validasiModel::getById(intval($_GET['id']));
+        $pengajuan = pengajuanModel::getByIdvalidasi($validasi['id']);
+        $peternak = peternakModel::getById($pengajuan['id_peternak']);
+        // Tentukan direktori dan nama file berdasarkan ID atau logika lainnya
+        $directory = 'assets/validasi/surat_validasi/';  // Ganti dengan path direktori yang diinginkan
+        $filename = $peternak['nama'].'-'.$validasi['id'].'.pdf';
+        // Path lengkap ke file
+        $filePath = $directory . $filename;
+        $downloadFilename = 'Surat Validasi.pdf';
+        // Periksa apakah file ada
+        if (file_exists($filePath)) {
+            // Set header untuk mengunduh file
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/pdf');
+            header('Content-Disposition: attachment; filename="' . $downloadFilename . '"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($filePath));
+            flush(); // Flush sistem output buffer
+            readfile($filePath);
+            exit;
+        } else {
+            // Tampilkan pesan kesalahan jika file tidak ditemukan
+            echo 'File tidak ditemukan.';
+        }
+        // header('Location: ' .urlpath('pengajuan'));
+        // exit();
     }
 }
 ?>

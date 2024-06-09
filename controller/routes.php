@@ -34,6 +34,8 @@ Router::url('editpengajuan', 'post', 'pengajuanController::storeEditPengajuan');
 Router::url('detailpengajuan', 'get', 'pengajuanController::showDetailPengajuan');
 Router::url('detailpengajuan', 'post', 'pengajuanController::storeDetailPengajuan');
 
+Router::url('validasi', 'get' ,'pengajuanController::unduhValidasi');
+
 Router::url('konfirmasi', 'get', 'pengajuanController::showKonfirmasi');
 Router::url('konfirmasi', 'post', 'pengajuanController::storeKonfirmasi');
 

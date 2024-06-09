@@ -81,7 +81,13 @@ class validasiModel {
             $stmt->bind_param("ss", $id_tempat_pengambilan, $id);
             $stmt->execute();
         }
-        
+        if (isset($data['surat_validasi'])) {
+            
+            $query = "UPDATE `validasi` SET `surat_validasi`=? WHERE `id`=?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("ss", $surat_validasi, $id);
+            $stmt->execute();
+        }
         return true;
     }
 }

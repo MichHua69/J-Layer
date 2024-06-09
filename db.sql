@@ -69,6 +69,7 @@ CREATE TABLE validasi (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     tanggal_pengambilan DATE,
     jumlah_pakan INTEGER,
+    surat_validasi VARCHAR(255),
     id_dinas_peternakan INTEGER,
     id_tempat_pengambilan INTEGER,
     FOREIGN KEY (id_dinas_peternakan) REFERENCES dinas_peternakan(id),
