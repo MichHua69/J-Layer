@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- <link rel="stylesheet" href="assets/css/main.css"> -->
     <link rel="stylesheet" href="assets/css/dashboard.css">
+    
     <title>Berita</title>
 </head>
 <body>
@@ -35,7 +36,7 @@
                         </div>
                     <?php if($role === 1): ?>
                     <button type="button" class="inline-block rounded rounded-lg text-center py-2 text-xl font-bold uppercase leading-normal text-white shadow-dark-3 transition duration-150 ease-in-out bg-[#FFC100] hover:bg-[#FFC100] min-w-32 shadow-lg w-full lg:w-auto"
-                    onclick="window.location=''">
+                    onclick="window.location='<?=urlpath('tambahberita')?>'">
                     Tambah
                     </button>
                     <?php endif; ?>
@@ -43,10 +44,12 @@
                 <div class="grid md:grid-cols-3 gap-6">
                     <?php foreach ($berita as $data) : ?>
                     <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
-                        <img src="assets/images/ayam.jpg" alt="blog image" class="mb-4">
+                        <?php if(isset($data['thumbnail'])):?>
+                            <img src="assets/berita/<?= $data['thumbnail'] ?>" alt="blog image" class="mb-4 max-h-40 w-full object-cover object-top">
+                        <?php endif; ?>
                         <h3 class="text-xl font-bold mb-4"><?= $data['judul'] ?></h3>
                         <p class="mb-4"><?= substr($data['deskripsi'], 0, 100) ?>...</p>
-                        <a href="#" class="text-blue-600 hover:underline">Baca Selengkapnya</a>
+                        <a href="<?=urlpath('berita?id='.$data['id'])?>" class="text-blue-600 hover:underline">Baca Selengkapnya</a>
                     </div>
                     <?php endforeach; ?>
                 </div>
@@ -85,11 +88,8 @@
         </section>
     </main>
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-3">
-        <div class="container mx-auto px-6 text-center">
-            <p>&copy; 2024 J-Layer. All rights reserved.</p>
-        </div>
-    </footer>
+    <?php include 'layouts/footer.php'; ?>
+
 
 
     <script>

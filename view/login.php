@@ -66,7 +66,9 @@
                 </div>
             </div>
         </div>
-    </section>
+        
+        </section>
+    <?php include 'layouts/footer.php'; ?>
     <script>
         const togglePassword = document.querySelector('#toggle-password');
         const password = document.querySelector('#password');

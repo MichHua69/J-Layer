@@ -20,7 +20,7 @@ class authController{
                 $_SESSION['user'] = $user;
             } elseif ($isKepala) {
                 $_SESSION['role'] = 2;
-                $user = kepala_kelompok_ternalkModel::getUser($email);
+                $user = kepala_kelompok_ternakModel::getUser($email);
                 $_SESSION['user'] = $user;
             } elseif ($isPeternak) {
                 $_SESSION['role'] = 3;
@@ -69,7 +69,7 @@ class authController{
                     'noSurat' => $noSurat,
                     'wilayah' => $wilayah,
                 ];
-                kepala_kelompok_ternalkModel::create($data);
+                kepala_kelompok_ternakModel::create($data);
             } else {
                 $data = [
                     'nama' => $nama,

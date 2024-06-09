@@ -1,6 +1,6 @@
 <?php
 
-class kepala_kelompok_ternalkModel{
+class kepala_kelompok_ternakModel{
     public static function getAll()
     {
         global $conn;
@@ -36,6 +36,29 @@ class kepala_kelompok_ternalkModel{
         $stmt->execute();
         
         return true;
+    }
+    public static function update($data=[]) {
+        global $conn;
+        if(isset($data['nama'])) {
+            $query = "UPDATE `kepala_kelompok_ternak` SET `nama` = ? WHERE `id` = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("ss", $data['nama'], $data['id']);
+            $stmt->execute();
+        }
+
+        if(isset($data['email'])) {
+            $query = "UPDATE `kepala_kelompok_ternak` SET `email` = ? WHERE `id` = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("ss", $data['email'], $data['id']);
+            $stmt->execute();
+        }
+
+        if(isset($data['no_telepon'])) {
+            $query = "UPDATE `kepala_kelompok_ternak` SET `no_telepon` = ? WHERE `id` = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("ss", $data['no_telepon'], $data['id']);
+            $stmt->execute();
+        }
     }
 }
 ?>

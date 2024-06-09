@@ -70,6 +70,15 @@ class pengajuanController
 
         }
     }
+    public static function fetchPengajuan() {
+        // Misalnya, ambil data pengajuan sesuai kebutuhan (pagination, status, dsb.)
+        $current_page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+        $limit = 5; // Tentukan limit sesuai kebutuhan
+        $pengajuan = pengajuanModel::getAll($limit, $current_page); // Anda harus menyesuaikan fungsi ini
+    
+        echo json_encode($pengajuan);
+    }
+    
     public static function showTambahPengajuan()
     {   
         $role = $_SESSION['role'];

@@ -15,15 +15,17 @@
             <a href="<?= urlpath('dashboard')?>" class="button-navbar text-white text-lg hover:text-white">Dashboard</a>
             <a href="<?= urlpath('pengajuan')?>" class="button-navbar text-white text-lg hover:text-white">Pengajuan</a>
         </div>
-
-        <div class="hidden lg:flex lg:justify-end">
+        <div class="hidden lg:flex lg:items-center lg:gap-4 lg:justify-end">
+            <button onclick="window.location.href='<?= urlpath('profil')?>';">
+                <i data-feather="user" class="stroke-white w-10 h-10 rounded-full border-[3px] border-white"></i>
+            </button>
             <button id='logout-btn' class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="window.location.href='<?= urlpath('logout')?>'">Logout</button>
         </div>
     </div>
 </nav>
 
 <!-- Sidebar -->
-<div id="sidebar-menu" class="fixed top-0 left-0 w-64 h-full bg-[#FFC100] transform -translate-x-full transition-transform lg:hidden z-50">
+<div id="sidebar-menu" class="fixed top-0 right-0 w-64 h-full bg-[#FFC100] transform translate-x-full transition-transform lg:hidden z-50">
     <div class="p-4 h-full relative">
         <button class="text-white focus:outline-none mb-4" onclick="toggleSidebar('sidebar-menu')">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -35,6 +37,10 @@
                 <a href="<?= urlpath('dashboard')?>" class="block text-white text-lg hover:text-white">Dashboard</a>
                 <a href="<?= urlpath('pengajuan')?>" class="block text-white text-lg hover:text-white">Pengajuan</a>
             </div>
+            <button onclick="window.location.href='<?= urlpath('profil')?>';" class="absolute bottom-20 right-4 left-4 flex items-center  gap-4 border-[3px] border-white p-2 rounded-full">
+                <i data-feather="user" class="stroke-white w-10 h-10 rounded-full border-[3px] border-white "></i>
+                <p class=" right-4 left-4 text-white font-semibold">Profil</p>
+            </button>
             <button id='logout-btn' class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded absolute bottom-4 right-4 left-4" onclick="window.location.href='<?= urlpath('logout')?>'">Logout</button>
             <!-- <div class="absolute bottom-4">
             </div> -->
@@ -46,10 +52,15 @@
 <script>
     function toggleSidebar(id) {
         const element = document.getElementById(id);
-        if (element.classList.contains('-translate-x-full')) {
-            element.classList.remove('-translate-x-full');
+        if (element.classList.contains('translate-x-full')) {
+            element.classList.remove('translate-x-full');
         } else {
-            element.classList.add('-translate-x-full');
+            element.classList.add('translate-x-full');
         }
     }
 </script>
+<script src="https://unpkg.com/feather-icons"></script>
+<script>
+    feather.replace(); // Ganti elemen dengan ikon Feather
+</script>
+

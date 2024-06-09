@@ -137,36 +137,15 @@ INSERT INTO `status_validasi` (`id`, `status`) VALUES
 
 INSERT INTO `konfirmasi` (`id`, `tanggal_pengambilan`, `foto_bukti`, `id_kepala_kelompok_ternak`) VALUES
 (1, NULL, NULL, NULL),
-(2, NULL, NULL, NULL),
-(3, NULL, NULL, NULL),
-(4, NULL, NULL, NULL),
-(5, NULL, NULL, NULL),
-(6, NULL, NULL, NULL),
-(7, NULL, NULL, NULL),
-(8, NULL, NULL, NULL),
-(9, NULL, NULL, NULL);
+(2, NULL, NULL, NULL);
 
 INSERT INTO `validasi` (`id`, `tanggal_pengambilan`, `jumlah_pakan`, `id_dinas_peternakan`, `id_tempat_pengambilan`) VALUES
 (1, NULL, NULL, NULL, NULL),
-(2, NULL, NULL, NULL, NULL),
-(3, NULL, NULL, NULL, NULL),
-(4, NULL, NULL, NULL, NULL),
-(5, NULL, NULL, NULL, NULL),
-(6, NULL, NULL, NULL, NULL),
-(7, NULL, NULL, NULL, NULL),
-(8, NULL, NULL, NULL, NULL),
-(9, NULL, NULL, NULL, NULL);
+(2, NULL, NULL, NULL, NULL);
 
 INSERT INTO `pengajuan` ( `alamat`, `foto_peternakan`, `foto_surat_usaha`, `jumlah_pakan`, `id_jumlah_populasi_ayam`, `id_peternak`, `id_status_validasi`, `id_status_konfirmasi`, `id_validasi`, `id_konfirmasi`) VALUES
 ( 'Jember', 'Hasanuddin-1-foto_peternakan.png', 'Hasanuddin-1-foto_usaha.png', 21, 1, 1, 1, 1, 1, 1),
-( 'tes', 'Hasanuddin-2-foto_peternakan.png', 'Hasanuddin-2-foto_usaha.jpeg', 33, 2, 1, 1, 1, 2, 2),
-( 'tes', 'Hasanuddin-2-foto_peternakan.png', 'Hasanuddin-2-foto_usaha.jpeg', 33, 2, 1, 1, 1, 3, 3),
-( 'tes', 'Hasanuddin-2-foto_peternakan.png', 'Hasanuddin-2-foto_usaha.jpeg', 33, 2, 1, 1, 1, 4, 4),
-( 'tes', 'Hasanuddin-2-foto_peternakan.png', 'Hasanuddin-2-foto_usaha.jpeg', 33, 2, 1, 1, 1, 5, 5),
-( 'tes', 'Hasanuddin-2-foto_peternakan.png', 'Hasanuddin-2-foto_usaha.jpeg', 33, 2, 1, 1, 1, 6, 6),
-( 'tes', 'Hasanuddin-2-foto_peternakan.png', 'Hasanuddin-2-foto_usaha.jpeg', 33, 2, 1, 1, 1, 7, 7),
-( 'tes', 'Hasanuddin-2-foto_peternakan.png', 'Hasanuddin-2-foto_usaha.jpeg', 33, 2, 1, 1, 1, 8, 8),
-( 'tes', 'Hasanuddin-2-foto_peternakan.png', 'Hasanuddin-2-foto_usaha.jpeg', 33, 2, 1, 1, 1, 9, 9);
+( 'tes', 'Hasanuddin-2-foto_peternakan.png', 'Hasanuddin-2-foto_usaha.jpeg', 33, 2, 1, 1, 1, 2, 2);
 
 
 INSERT INTO berita (tanggal, judul, thumbnail, deskripsi, id_dinas_peternakan) VALUES

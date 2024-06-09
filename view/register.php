@@ -266,6 +266,8 @@
             </div>
         </div>
     </section>
+    <?php include 'layouts/footer.php'; ?>
+
     <script>
         let tab1 = document.querySelector('.tab--1');
         let tab2 = document.querySelector('.tab--2');

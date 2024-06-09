@@ -47,5 +47,30 @@ class peternakModel {
         
         return true;
     }
+
+    public static function update($data=[]) {
+        global $conn;
+        extract($data);
+        if (isset($data['nama'])) {
+            $query = "UPDATE `peternak` SET `nama` = ? WHERE `id` = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("ss", $data['nama'], $data['id']);
+            $stmt->execute();
+        }
+
+        if (isset($data['email'])) {
+            $query = "UPDATE `peternak` SET `email` = ? WHERE `id` = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("ss", $data['email'], $data['id']);
+            $stmt->execute();
+        }
+
+        if (isset($data['no_telepon'])) {
+            $query = "UPDATE `peternak` SET `no_telepon` = ? WHERE `id` = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("ss", $data['no_telepon'], $data['id']);
+            $stmt->execute();
+        }
+    }
 }
 ?>
