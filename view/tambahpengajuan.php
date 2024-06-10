@@ -17,7 +17,7 @@
             <h1 class="text-center font-bold mb-8 text-3xl lg:text-5xl">Form Pengajuan</h1>
             <div class="bg-white shadow-md rounded-lg p-8 mx-auto w-full lg:w-full">
                 <form method="POST" action="<?php urlpath('tambahpengajuan')?>" class=" space-y-6" enctype="multipart/form-data">
-                    <div class="rounded-md shadow-sm">
+                    <div class="rounded-md ">
                         <div class="mt-4">
                             <label class="font-semibold" for="alamat">Alamat</label>
                             <input
@@ -27,17 +27,26 @@
                                 type="text"
                                 name="alamat"
                                 id="alamat"
+                                value="<?= isset($_SESSION['alamat']) ? htmlspecialchars($_SESSION['alamat']) : '' ?>"
                             />
+                            <?php if (isset($_SESSION['error']['alamat'])): ?>
+                            <p class="text-red-500 text-xs italic"><?= $_SESSION['error']['alamat'] ?></p>
+                            <?php endif ?>
                         </div>
                         
                         <div class="mt-4">
                             <label class="font-semibold" for="jumlah_populasi">Jumlah Populasi Ayam</label>
                             <select class="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-gray-500 focus:z-10 sm:text-sm" name="jumlah_populasi" id="jumlah_populasi">
-                                <?php foreach ($jumlah_populasi as $jumlah) { ?>
                                 <option value="" selected hidden>Pilih Jumlah Populasi</option>
-                                    <option value="<?= $jumlah['id'] ?>"><?= $jumlah['jumlah'] ?></option>
+                                <?php foreach ($jumlah_populasi as $jumlah) { ?>
+                                    <option value="<?= htmlspecialchars($jumlah['id']) ?>" <?= isset($_SESSION['id_jumlah_populasi_ayam']) && $_SESSION['id_jumlah_populasi_ayam'] == $jumlah['id'] ? 'selected' : '' ?>>
+                                        <?= htmlspecialchars($jumlah['jumlah']) ?>
+                                    </option>
                                 <?php } ?>
                             </select>
+                            <?php if (isset($_SESSION['error']['jumlah_populasi'])): ?>
+                            <p class="text-red-500 text-xs italic"><?= $_SESSION['error']['jumlah_populasi'] ?></p>
+                            <?php endif ?>
                         </div>
                         <div class="mt-4">
                             <label class="font-semibold" for="foto_peternakan">Foto Peternakan</label>
@@ -82,7 +91,11 @@
                                 id="jumlah_pakan"
                                 min="1"
                                 step="1"
+                                value="<?= isset($_SESSION['jumlah_pakan']) ? htmlspecialchars($_SESSION['jumlah_pakan']) : '' ?>"
                             />
+                            <?php if (isset($_SESSION['error']['jumlah_pakan'])): ?>
+                            <p class="text-red-500 text-xs italic"><?= $_SESSION['error']['jumlah_pakan'] ?></p>
+                            <?php endif ?>
                         </div>                             
                     </div>
                     
@@ -98,7 +111,12 @@
             </div>
         </div>
     </section>
-
+    <?php unset($_SESSION['error']['alamat']); ?>
+    <?php unset($_SESSION['error']['jumlah_populasi']); ?>
+    <?php unset($_SESSION['error']['jumlah_pakan']); ?>
+    <?php unset($_SESSION['alamat']); ?>
+    <?php unset($_SESSION['id_jumlah_populasi_ayam']); ?>
+    <?php unset($_SESSION['jumlah_pakan']); ?>
     <!-- Footer -->
     <?php include 'layouts/footer.php'; ?>
 

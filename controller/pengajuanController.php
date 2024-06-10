@@ -93,71 +93,81 @@ class pengajuanController
         $alamat = $_POST['alamat'];
         $jumlah_pakan = $_POST['jumlah_pakan'];
         $jumlah_populasi = $_POST['jumlah_populasi'];
-        
-        // Validate file uploads
+        $jumlah_populasi_ayam = jumlah_populasi_ayamModel::getById(intval($jumlah_populasi));
         $foto_peternakan = $_FILES['foto_peternakan'] ?? null;
         $foto_usaha = $_FILES['foto_usaha'] ?? null;
-    
-        $errors = [];
+        
+
+        $_SESSION['alamat'] = $alamat;
+        $_SESSION['id_jumlah_populasi_ayam'] = $jumlah_populasi;
+        $_SESSION['jumlah_populasi_ayam'] = $jumlah_populasi_ayam['jumlah'];
+        $_SESSION['jumlah_pakan'] = $jumlah_pakan;
+
+
+        if(empty($alamat)) {
+            $_SESSION['error']['alamat'] = 'Alamat harus diisi';
+        }
+        if(empty($jumlah_pakan)) {
+            $_SESSION['error']['jumlah_pakan'] = 'Jumlah pakan harus diisi';
+        }
+        if(empty($jumlah_populasi)) {
+            $_SESSION['error']['jumlah_populasi'] = 'Jumlah populasi harus diisi';
+        } 
     
         if (!$foto_peternakan || $foto_peternakan['error'] !== UPLOAD_ERR_OK) {
-            $errors[] = 'Error uploading foto peternakan';
+            
         }
         if (!$foto_usaha || $foto_usaha['error'] !== UPLOAD_ERR_OK) {
-            $errors[] = 'Error uploading foto usaha';
+            
         }
-    
-        if (!empty($errors)) {
-            foreach ($errors as $error) {
-                echo $error . '<br>';
-            }
-            return;
+        
+        if(isset($_SESSION['error']['alamat']) || isset($_SESSION['error']['jumlah_pakan']) || isset($_SESSION['error']['jumlah_populasi'])) {
+            header('Location: ' . urlpath('tambahpengajuan'));
         }
-    
-        // Prepare initial data for insertion
-        $data = [
-            'alamat' => $alamat,
-            'jumlah_pakan' => $jumlah_pakan,
-            'id_jumlah_populasi_ayam' => intval($jumlah_populasi),
-            'foto_peternakan' => null,
-            'foto_usaha' => null,
-            'id_peternak' => $user['id'],
-            'id_status_validasi' => 1, // Assuming default status
-            'id_status_konfirmasi' => 1, // Assuming default status
-            'id_validasi' => null, // Assuming default ID
-            'id_konfirmasi' => null // Assuming default ID
-        ];
+        // // Prepare initial data for insertion
+        // $data = [
+        //     'alamat' => $alamat,
+        //     'jumlah_pakan' => $jumlah_pakan,
+        //     'id_jumlah_populasi_ayam' => intval($jumlah_populasi),
+        //     'foto_peternakan' => null,
+        //     'foto_usaha' => null,
+        //     'id_peternak' => $user['id'],
+        //     'id_status_validasi' => 1, // Assuming default status
+        //     'id_status_konfirmasi' => 1, // Assuming default status
+        //     'id_validasi' => null, // Assuming default ID
+        //     'id_konfirmasi' => null // Assuming default ID
+        // ];
 
-        $pengajuan_id = pengajuanModel::create($data);
-        $foto_peternakanName = $user['nama'] . '-' . $pengajuan_id . '-foto_peternakan.' . pathinfo($foto_peternakan['name'], PATHINFO_EXTENSION);
-        $foto_usahaName = $user['nama'] . '-' . $pengajuan_id . '-foto_usaha.' . pathinfo($foto_usaha['name'], PATHINFO_EXTENSION);
+        // $pengajuan_id = pengajuanModel::create($data);
+        // $foto_peternakanName = $user['nama'] . '-' . $pengajuan_id . '-foto_peternakan.' . pathinfo($foto_peternakan['name'], PATHINFO_EXTENSION);
+        // $foto_usahaName = $user['nama'] . '-' . $pengajuan_id . '-foto_usaha.' . pathinfo($foto_usaha['name'], PATHINFO_EXTENSION);
     
-        // Upload files
-        $foto_peternakanPath = 'assets/pengajuan/foto_peternakan/' . $foto_peternakanName;
-        $foto_usahaPath = 'assets/pengajuan/foto_usaha/' . $foto_usahaName;
+        // // Upload files
+        // $foto_peternakanPath = 'assets/pengajuan/foto_peternakan/' . $foto_peternakanName;
+        // $foto_usahaPath = 'assets/pengajuan/foto_usaha/' . $foto_usahaName;
         
-        $validasi_id = validasiModel::create();
-        $konfirmasi_id = konfirmasiModel::create();
-        // Update the record with the file paths
-        $updateData = [
-            'id' => $pengajuan_id,
-            'foto_peternakan' => $foto_peternakanName,
-            'foto_usaha' => $foto_usahaName,
-            'id_validasi' => $validasi_id,
-            'id_konfirmasi' => $konfirmasi_id
-        ];
-        // var_dump($updateData);
-        $create = pengajuanModel::secondCreate($updateData);
+        // $validasi_id = validasiModel::create();
+        // $konfirmasi_id = konfirmasiModel::create();
+        // // Update the record with the file paths
+        // $updateData = [
+        //     'id' => $pengajuan_id,
+        //     'foto_peternakan' => $foto_peternakanName,
+        //     'foto_usaha' => $foto_usahaName,
+        //     'id_validasi' => $validasi_id,
+        //     'id_konfirmasi' => $konfirmasi_id
+        // ];
+        // // var_dump($updateData);
+        // $create = pengajuanModel::secondCreate($updateData);
         
-        if (!file_exists('assets/pengajuan/foto_peternakan/')) {
-            mkdir('assets/pengajuan/foto_peternakan/', 0777, true);
-        }
-        if (!file_exists('assets/pengajuan/foto_usaha/')) {
-            mkdir('assets/pengajuan/foto_usaha/', 0777, true);
-        }
-        move_uploaded_file($foto_peternakan['tmp_name'], $foto_peternakanPath);
-        move_uploaded_file($foto_usaha['tmp_name'], $foto_usahaPath);
-        header('Location: '.urlpath('pengajuan'));
+        // if (!file_exists('assets/pengajuan/foto_peternakan/')) {
+        //     mkdir('assets/pengajuan/foto_peternakan/', 0777, true);
+        // }
+        // if (!file_exists('assets/pengajuan/foto_usaha/')) {
+        //     mkdir('assets/pengajuan/foto_usaha/', 0777, true);
+        // }
+        // move_uploaded_file($foto_peternakan['tmp_name'], $foto_peternakanPath);
+        // move_uploaded_file($foto_usaha['tmp_name'], $foto_usahaPath);
+        // header('Location: '.urlpath('pengajuan'));
     }
 
     public static function showEditPengajuan() 

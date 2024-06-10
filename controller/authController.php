@@ -10,10 +10,11 @@ class authController{
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $email = $_POST['email'];
             $password = $_POST['password'];
-
+            
             $isDinas = authModel::isDinas($email, $password);
             $isKepala = authModel::isKepala($email, $password);
             $isPeternak = authModel::isPeternak($email, $password);
+            
             if ($isDinas) {
                 $_SESSION['role'] = 1;
                 $user = dinas_peternakanModel::getUser($email);
@@ -31,6 +32,7 @@ class authController{
 
                 header('Location: ' . urlPath('dashboard'));
             } else {
+                $_SESSION['error'] = 'Email atau Password salah!';
                 header('Location: '. urlPath('login'));
             }
 

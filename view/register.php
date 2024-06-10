@@ -27,7 +27,7 @@
                             <form method="POST" action="<?=urlpath('register')?>" class="mt-8 space-y-6">
                                 <div class="rounded-md shadow-sm">
                                     <div class="mt-4">
-                                        <label class="" for="name">Nama</label>
+                                        <label class="font-semibold" for="name">Nama</label>
                                         <input
                                             placeholder="Masukkan Nama"
                                             class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
@@ -38,7 +38,7 @@
                                         />
                                     </div>
                                     <div class="mt-4">
-                                        <label class="" for="email">Email</label>
+                                        <label class="font-semibold" for="email">Email</label>
                                         <input
                                             placeholder="Masukkan Email"
                                             class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
@@ -49,7 +49,7 @@
                                         />
                                     </div>
                                     <div class="mt-4">
-                                        <label class="" for="nik">NIK</label>
+                                        <label class="font-semibold" for="nik">NIK</label>
                                         <input
                                             placeholder="Masukkan NIK"
                                             class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
@@ -60,7 +60,7 @@
                                         />
                                     </div>
                                     <div class="mt-4">
-                                        <label class="" for="telepon">No Telepon</label>
+                                        <label class="font-semibold" for="telepon">No Telepon</label>
                                         <input
                                             placeholder="Masukkan No Telepon"
                                             class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
@@ -71,7 +71,7 @@
                                         />
                                     </div>
                                     <div class="flex flex-col relative mt-4">
-                                        <label class="" for="password">Password</label>
+                                        <label class="font-semibold" for="password">Password</label>
                                             <div class="relative w-full">
                                             <input
                                                 placeholder="Masukkan Password"
@@ -90,7 +90,7 @@
                                         </div>
                                     </div>
                                     <div class="flex flex-col relative mt-4">
-                                        <label class="" for="password_confirmation">Konfirmasi Password</label>
+                                        <label class="font-semibold" for="password_confirmation">Konfirmasi Password</label>
                                         <div class="relative w-full">
                                             <input
                                                 placeholder="Masukkan Konfirmasi Password"
@@ -135,7 +135,7 @@
                             <form method="POST" action="<?=urlpath('register')?>" class="mt-8 space-y-6">
                                 <div class="rounded-md shadow-sm">
                                     <div class="mt-4">
-                                        <label class="" for="name">Nama</label>
+                                        <label class="font-semibold" for="name">Nama</label>
                                         <input
                                             placeholder="Masukkan Nama"
                                             class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
@@ -146,7 +146,7 @@
                                         />
                                     </div>
                                     <div class="mt-4">
-                                        <label class="" for="email">Email</label>
+                                        <label class="font-semibold" for="email">Email</label>
                                         <input
                                             placeholder="Masukkan Email"
                                             class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
@@ -157,7 +157,7 @@
                                         />
                                     </div>
                                     <div class="mt-4">
-                                        <label class="" for="nik">NIK</label>
+                                        <label class="font-semibold" for="nik">NIK</label>
                                         <input
                                             placeholder="Masukkan NIK"
                                             class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
@@ -168,7 +168,7 @@
                                         />
                                     </div>
                                     <div class="mt-4">
-                                        <label class="" for="noSurat">Nomor Surat</label>
+                                        <label class="font-semibold" for="noSurat">Nomor Surat</label>
                                         <input
                                             placeholder="Masukkan Nomor Surat"
                                             class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
@@ -180,7 +180,7 @@
                                     </div>
                                     
                                     <div class="mt-4">
-                                        <label class="" for="wilayah">Nama Wilayah</label>
+                                        <label class="font-semibold" for="wilayah">Nama Wilayah</label>
                                         <select
                                             class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
                                             name="wilayah"
@@ -197,7 +197,7 @@
                                         </select>
                                     </div>
                                     <div class="mt-4">
-                                        <label class="" for="telepon">No Telepon</label>
+                                        <label class="font-semibold" for="telepon">No Telepon</label>
                                         <input
                                             placeholder="Masukkan No Telepon"
                                             class="appearance-none relative block w-full px-3 py-3 border border-[#FFC100] bg-[#ebebec] rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-[#FF5F00] focus:z-10 sm:text-sm"
@@ -208,7 +208,7 @@
                                         />
                                     </div>
                                     <div class="flex flex-col relative mt-4">
-                                        <label class="" for= "password">Password</label>
+                                        <label class="font-semibold" for= "password">Password</label>
                                         <div class="relative w-full">
                                             <input
                                                 placeholder="Masukkan Password"
@@ -227,7 +227,7 @@
                                         </div>
                                     </div>
                                     <div class="flex flex-col relative mt-4">
-                                        <label class="" for="password_confirmation">Konfirmasi Password</label>
+                                        <label class="font-semibold" for="password_confirmation">Konfirmasi Password</label>
                                         <div class="relative w-full">
                                             <input
                                                 placeholder="Masukkan Konfirmasi Password"

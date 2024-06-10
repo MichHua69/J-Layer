@@ -22,5 +22,15 @@ class jumlah_populasi_ayamModel {
         }
         return $jumlahPopulasiAyamRelation;
     }
+
+    public static function getById($id) {
+        global $conn;
+        $query = "SELECT * FROM `jumlah_populasi_ayam` WHERE `id` = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
 }
 ?>
