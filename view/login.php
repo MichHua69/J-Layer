@@ -36,7 +36,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <?php unset($_SESSION['error']); unset($_SESSION['success']); endif; ?>
+                            <?php endif; ?>
                             <form method="POST" action="<?= urlpath('login') ?>" class="space-y-6">
                                 <div class="rounded-md shadow-sm">
                                     <div class="flex flex-col">
@@ -89,6 +89,9 @@
         </div>
         
         </section>
+    <?php if(isset($_SESSION['error'])) unset($_SESSION['error']);
+    if(isset($_SESSION['success'])) unset($_SESSION['success']); ?>
+
     <?php include 'layouts/footer.php'; ?>
     <script>
         const togglePassword = document.querySelector('#toggle-password');

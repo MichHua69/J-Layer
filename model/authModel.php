@@ -8,6 +8,11 @@ class authModel  {
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result()->fetch_assoc();
+        if ($result) {
+            // Log the password check
+            error_log("Password hash from database: " . $result['password']);
+            error_log("Password verification result: " . (password_verify($password, $result['password']) ? 'true' : 'false'));
+        }
         return $result && password_verify($password, $result['password']) ? $result : null;
     }
     public static function IsKepala($email, $password)
@@ -17,6 +22,11 @@ class authModel  {
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result()->fetch_assoc();
+        if ($result) {
+            // Log the password check
+            error_log("Password hash from database: " . $result['password']);
+            error_log("Password verification result: " . (password_verify($password, $result['password']) ? 'true' : 'false'));
+        }
         return $result && password_verify($password, $result['password']) ? $result : null;
     }
     public static function isPeternak($email, $password)
@@ -26,6 +36,11 @@ class authModel  {
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result()->fetch_assoc();
+        if ($result) {
+            // Log the password check
+            error_log("Password hash from database: " . $result['password']);
+            error_log("Password verification result: " . (password_verify($password, $result['password']) ? 'true' : 'false'));
+        }
         return $result && password_verify($password, $result['password']) ? $result : null;
     }
 
