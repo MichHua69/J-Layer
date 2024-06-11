@@ -48,7 +48,19 @@
         
     </div>
 </div>
-
+<div id="modalLogout" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50 hidden">
+    <div class="bg-white p-8 rounded shadow-lg w-1/3">
+        <h3 class="text-lg mb-4 font-bold text-center">Logout</h3>
+        <p class="text-center">Apakah anda yakin untuk logout?</p>
+        <div class="flex items-center justify-center mt-4">
+            <button type="button" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700 mr-4 w-1/3" id="batalLogout" onclick="closeModal()">Tidak</button>
+            <button type="button" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700 w-1/3" onclick="document.getElementById('formLogout').submit()">Ya</button>
+        </div>
+        <!-- <form id="formLogout" action="{{ route('logout') }}" method="POST" class="hidden">
+            
+        </form> -->
+    </div>
+</div>
 <script>
     function toggleSidebar(id) {
         const element = document.getElementById(id);

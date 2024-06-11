@@ -50,44 +50,112 @@ class authController{
     }
     
     public static function register() {
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $register = $_POST['register'];
+            $_SESSION['register'] = $register;
             $nama = $_POST['name'];
             $email = $_POST['email'];
             $nik = $_POST['nik'];
             $telepon = $_POST['telepon'];
             $password = $_POST['password'];
+            $noSurat = $_POST['noSurat'];
+            $wilayah = $_POST['wilayah'];
             $password_confirmation = $_POST['password_confirmation'];
-            // var_dump($_POST);
-            if (isset($_POST['noSurat']) && isset($_POST['wilayah'])) {
-                $noSurat = $_POST['noSurat']; //
-                $wilayah = $_POST['wilayah']; //
+            $_SESSION['name'] = $nama;
+            $_SESSION['email'] = $email;
+            $_SESSION['nik'] = $nik;
+            $_SESSION['telepon'] = $telepon;
+            $_SESSION['noSurat'] = $noSurat;
+            $_SESSION['wilayah'] = $wilayah;
     
-                $data = [
-                    'nama' => $nama,
-                    'email' => $email,
-                    'nik' => $nik,
-                    'telepon' => $telepon,
-                    'password' => $password,
-                    'noSurat' => $noSurat,
-                    'wilayah' => $wilayah,
-                ];
-                kepala_kelompok_ternakModel::create($data);
-            } else {
-                $data = [
-                    'nama' => $nama,
-                    'email' => $email,
-                    'nik' => $nik,
-                    'telepon' => $telepon,
-                    'password' => $password,
-                ];
-                peternakModel::create($data);
+            $checkEmailUnique = authModel::checkEmailUnique($email);
+            if ($checkEmailUnique == false) {
+                $_SESSION['error']['email'] = 'Email sudah terdaftar';
             }
-            header("Location: ".urlpath('login'));
-            exit();
-        } else if($_SERVER['REQUEST_METHOD'] == 'GET'){
+    
+            $checkNIKUnique = authModel::checkNIKUnique($nik);
+            if ($checkNIKUnique == false) {
+                $_SESSION['error']['nik'] = 'NIK sudah terdaftar';
+            }
+    
+            $checkTeleponUnique = authModel::checkTeleponUnique($telepon);
+            if ($checkTeleponUnique == false) {
+                $_SESSION['error']['telepon'] = 'Telepon sudah terdaftar';
+            }
+    
+            $checkNoSuratUnique = authModel::checkNoSuratUnique($noSurat);
+            if ($checkNoSuratUnique == false) {
+                $_SESSION['error']['noSurat'] = 'No. Surat sudah terdaftar';
+            } else {
+                $ListNoSurat = ['1111129876', '1111256789', '1111456789', '1111678910', '1111678999', '1111678666', '111167888'];
+                if (!in_array($noSurat, $ListNoSurat)) {
+                    $_SESSION['error']['noSurat'] = 'No. Surat tidak valid';
+                } else if($ListNoSurat[$wilayah - 1] !== $noSurat){
+                    $_SESSION['error']['wilayah'] = 'Tempat Pengambilan tidak sesuai dengan No. Surat';
+                }
+            }
+            $ListWilayah = [
+                '1' => '1 (Balung, Wuluhan, Jombang, Kencong, Rambipuji)',
+                '2' => '2 (Mumbulsari, Ambulu, Tempurejo, Jenggawah Ajung)',
+                '3' => '3 (Tanggul, Bangsalsari, Sumberbaru)',
+                '4' => '4 (Sukowono, Jelbuk, Kalisat, Ledokombo, Sumberjambe, Arjasa, Silo)',
+                '5' => '5 (Puger)',
+                '6' => '6 (Patrang, Sukorambi, Mangli, Kaliwates, Arjasa)',
+                '7' => '7 (Sumbersari, Mayang, Pakusari, Tempurejo, Mumbulsari)',
+            ];
+            $wilayah = $ListWilayah[$wilayah];
+            $checkWilayahUnique = authModel::checkWilayahUnique($wilayah);
+            // var_dump($checkWilayahUnique, $wilayah);
+            if ($checkWilayahUnique == false) {
+                $_SESSION['error']['wilayah'] = 'Wilayah sudah terdaftar';
+            }
+
+            if (strlen($password) < 8 || strlen($password) > 10) {
+                $_SESSION['error']['password'] = 'Password harus 8-10 karakter';
+            } elseif ($password != $password_confirmation) {
+                $_SESSION['error']['password_confirmation'] = 'Pastikan password anda sesuai';
+            }
+
+            if (isset($_SESSION['error'])) {
+                header("Location: " . urlpath('register'));
+                exit();
+            } else {
+                // Register logic based on the type of user
+                // if ($register == 'kepala') {
+                //     $data = [
+                //         'nama' => $nama,
+                //         'email' => $email,
+                //         'nik' => $nik,
+                //         'telepon' => $telepon,
+                //         'password' => password_hash($password, PASSWORD_DEFAULT), // Secure password hashing
+                //         'noSurat' => $noSurat,
+                //         'wilayah' => $wilayah,
+                //     ];
+                //     kepala_kelompok_ternakModel::create($data);
+                //     $user = kepala_kelompok_ternakModel::getUser($email);
+                //     // Additional logic for kepala registration
+                // } else {
+                //     $data = [
+                //         'nama' => $nama,
+                //         'email' => $email,
+                //         'nik' => $nik,
+                //         'telepon' => $telepon,
+                //         'password' => password_hash($password, PASSWORD_DEFAULT), // Secure password hashing
+                //     ];
+                //     peternakModel::create($data);
+                // }
+
+                // // Redirect to login after successful registration
+                // $_SESSION['success'] = 'Akun anda berhasil dibuat! Silahkan login';
+                // // header("Location: " . urlpath('login'));
+                // // exit();
+            }
+        } else if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             view('register');
         }
     }
+    
+    
 }
 
     
