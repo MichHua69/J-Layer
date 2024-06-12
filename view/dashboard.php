@@ -34,7 +34,7 @@
                     <div class="flex w-full items-center gap-4">
                             <!-- <form action="" method="post"> -->
                             <button type="submit"
-                                class="shadow-md flex items-center justify-center gap-2 p-2.5 text-sm font-medium h-full text-white bg-[#FFC100] rounded-lg shadow-lg">
+                                class="shadow-md flex items-center justify-center gap-2 p-2.5 text-sm font-medium h-full text-white bg-[#FF5F00] rounded-lg shadow-lg">
                                 <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                     fill="none" viewBox="0 0 20 20">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -46,7 +46,7 @@
                             <!-- </form> -->
                         </div>
                     <?php if($role === 1): ?>
-                    <button type="button" class="inline-block rounded rounded-lg text-center py-2 text-xl font-bold uppercase leading-normal text-white shadow-dark-3 transition duration-150 ease-in-out bg-[#FFC100] hover:bg-[#FFC100] min-w-32 shadow-lg w-full lg:w-auto"
+                    <button type="button" class="inline-block rounded rounded-lg text-center py-2 text-xl font-bold uppercase leading-normal text-white shadow-dark-3 transition duration-500 ease-in-out bg-[#FF5F00] hover:bg-[#FFC100] min-w-32 shadow-lg w-full lg:w-auto"
                     onclick="window.location='<?=urlpath('tambahberita')?>'">
                     Tambah
                     </button>

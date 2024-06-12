@@ -15,7 +15,7 @@
             <div class="tab-container mb-4 h-full py-2 lg:py-4">
                 <button class="tab tab--1 h-full mx-auto my-auto lg:text-lg active" onclick="changeTab(1)">Peternak</button>
                 <button class="tab tab--2 h-full mx-auto my-auto lg:text-lg" onclick="changeTab(2)">Kepala Kelompok Ternak</button>
-                <div class="indicator h-full"></div>
+                <div class="indicator h-full bg-[#FF5F00]"></div>
             </div>
             <?php if (isset($_SESSION['register']) && $_SESSION['register'] == 'kepala'): ?>
                 <script>
@@ -148,7 +148,7 @@
                                 
                                 <div>
                                     <button
-                                        class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#FF5F00] hover:bg-[#FFFAE6] hover:text-[#FF5F00]"
+                                        class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#FF5F00] hover:bg-[#FFFAE6] hover:text-[#FF5F00] transition:all duration-500 ease-in-out"
                                         type="submit"
                                     >
                                         Daftar
@@ -156,9 +156,9 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="px-8 py-4 bg-[#ffc100] text-center font-semibold">
+                        <div class="px-8 py-4 bg-[#FF5F00] text-center font-semibold">
                             <span class="">Sudah Punya Akun?</span>
-                            <a class="font-medium text-[#FF5F00] hover:text-[#FFFAE6]" href="<?= urlpath('login')?>">Masuk</a>
+                            <a class="font-medium text-[#FFFAE6] hover:text-[#ffc100] transition:all duration-500 ease-in-out" href="<?= urlpath('login')?>">Masuk</a>
                         </div>
                     </div>
                 </div>
@@ -324,7 +324,7 @@
                                 
                                 <div>
                                     <button
-                                        class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#FF5F00] hover:bg-[#FFFAE6] hover:text-[#FF5F00]"
+                                        class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#FF5F00] hover:bg-[#FFFAE6] hover:text-[#FF5F00] transition:all duration-500 ease-in-out"
                                         type="submit"
                                     >
                                         Daftar
@@ -332,9 +332,9 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="px-8 py-4 bg-[#ffc100] text-center font-semibold">
+                        <div class="px-8 py-4 bg-[#FF5F00] text-center font-semibold">
                             <span class="">Sudah Punya Akun?</span>
-                            <a class="font-medium text-[#FF5F00] hover:text-[#FFFAE6]" href="<?= urlpath('login')?>">Masuk</a>
+                            <a class="font-medium text-[#FFFAE6] hover:text-[#ffc100]" href="<?= urlpath('login')?>">Masuk</a>
                         </div>
                     </div>
                 </div>

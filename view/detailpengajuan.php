@@ -107,7 +107,7 @@
                             Validasi
                         </button>
                         <button
-                            class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-lg font-medium rounded-md text-white bg-red-500 hover:bg-red-700 hover:text-white"
+                            class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-lg font-medium rounded-md text-white bg-[#FF0000] hover:bg-red-700 hover:text-white"
                             type="submit" onclick="" id="tolak-btn"
                         >
                             Tolak
@@ -117,7 +117,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" id="Hand-Held-Tablet-Writing--Streamline-Core" height="16" width="14"><desc>Hand Held Tablet Writing Streamline Icon: https://streamlinehq.com</desc><g id="hand-held-tablet-writing--tablet-kindle-device-electronics-ipad-writing-digital-paper-notepad"><path id="Vector" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" d="M8 0.5H1.5c-0.552285 0 -1 0.447715 -1 1v11c0 0.5523 0.447715 1 1 1h9c0.5523 0 1 -0.4477 1 -1V8" stroke-width="1"></path><path id="Vector_2" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" d="M0.5 10.5h11" stroke-width="1"></path><path id="Vector_3" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" d="M3.5 3h2" stroke-width="1"></path><path id="Vector_4" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" d="M3.5 5.5h1" stroke-width="1"></path><path id="Vector_5" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" d="m8.99414 7.5058 -3 0.54 0.5 -3.04L10.7241 0.795798c0.093 -0.093728 0.2036 -0.168122 0.3255 -0.218891C11.1714 0.526138 11.3021 0.5 11.4341 0.5c0.1321 0 0.2628 0.026138 0.3846 0.076907 0.1219 0.050769 0.2325 0.125163 0.3254 0.218891l1.06 1.060002c0.0938 0.09296 0.1682 0.20356 0.2189 0.32542 0.0508 0.12186 0.0769 0.25257 0.0769 0.38458 0 0.13201 -0.0261 0.26272 -0.0769 0.38457 -0.0507 0.12186 -0.1251 0.23247 -0.2189 0.32543l-4.20996 4.23Z" stroke-width="1"></path></g></svg>
                                 <span class="hidden lg:block">Ubah Pengajuan</span>
                             </button>
-                            <button type="button" class="font-semibold items-center gap-2 bg-red-500 text-white hover:bg-red-600 py-3 px-4 rounded-lg flex justify-center w-full text-center items-center" data-id="<?php echo $_GET['id']; ?>" onclick="deleteModal(this)">
+                            <button type="button" class="font-semibold items-center gap-2 bg-[#FF0000] text-white hover:bg-red-600 py-3 px-4 rounded-lg flex justify-center w-full text-center items-center" data-id="<?php echo $_GET['id']; ?>" onclick="deleteModal(this)">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" id="Recycle-Bin-2--Streamline-Core" height="16" width="16">
                                     <desc>Recycle Bin 2 Streamline Icon: https://streamlinehq.com</desc>
                                     <g id="recycle-bin-2--remove-delete-empty-bin-trash-garbage">
@@ -142,7 +142,7 @@
                     <h3 class="text-lg mb-4 font-bold text-center">Hapus Pengajuan</h3>
                     <p class="text-center">Apakah anda yakin menghapus pengajuan?</p>
                     <div class="flex gap-4 items-center justify-center mt-4">
-                        <button type="button" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700 mr-4 w-1/3" onclick="closeModal()">Tidak</button>
+                        <button type="button" class="bg-[#FF0000] text-white py-2 px-4 rounded hover:bg-red-700 mr-4 w-1/3" onclick="closeModal()">Tidak</button>
                         <input type="hidden" id="PengajuanId" name="pengajuan_id">
                         <button type="submit" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700 w-1/3">Ya</button>
                     </div>

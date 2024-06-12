@@ -14,7 +14,7 @@
 
 #login-btn {
   background-color: #ffffff;
-  color: #ffc100;
+  color: #ff0000;
 }
 
 #register-btn {
@@ -57,7 +57,7 @@
   content: "";
   width: 50%;
   height: 28px;
-  background: #ffc100;
+  background: #ff5f00;
   position: absolute;
   top: 2px;
   left: 2px;
@@ -96,5 +96,3 @@
 .preview {
   scrollbar-width: none;
 }
-
-

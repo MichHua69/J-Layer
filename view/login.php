@@ -71,7 +71,7 @@
                                 
                                 <div>
                                     <button
-                                        class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#FF5F00] hover:bg-[#FFFAE6] hover:text-[#FF5F00]"
+                                        class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#FF5F00] hover:bg-[#FFFAE6] hover:text-[#FF5F00] transition-all duration-500"
                                         type="submit"
                                     >
                                         Masuk
@@ -79,9 +79,9 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="px-8 py-4 bg-[#ffc100] text-center font-semibold">
+                        <div class="px-8 py-4 bg-[#FF5F00] text-center font-semibold">
                             <span class="">Belum Punya Akun?</span>
-                            <a class="font-medium text-[#FF5F00] hover:text-[#FFFAE6]" href="<?= urlpath('register')?>">Daftar</a>
+                            <a class="font-medium text-[#FFFAE6] hover:text-[#FFC100] ease-out duration-300" href="<?= urlpath('register')?>">Daftar</a>
                         </div>
                     </div>
                 </div>

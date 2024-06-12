@@ -17,7 +17,6 @@ route('berita', 'get', 'dashboardController::showBerita');
 
 //pengajuan
 route('pengajuan', 'get', 'pengajuanController::showPengajuan');
-route('fetchpengajuan', 'get', 'pengajuanController::fetchPengajuan');
 
 route('tambahpengajuan', 'get', 'pengajuanController::showTambahPengajuan');
 route('tambahpengajuan', 'post', 'pengajuanController::storeTambahPengajuan');
@@ -40,3 +39,6 @@ route('detailkonfirmasi','get', 'pengajuanController::showDetailKonfirmasi');
 
 route('profil', 'get', 'profilController::showProfil');
 route('profil', 'post', 'profilController::storeProfil');
+
+
+route('ajax', 'get' ,'pengajuanController::ajax');

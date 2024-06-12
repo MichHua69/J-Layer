@@ -27,7 +27,7 @@
             <div class="bg-white shadow-md rounded-lg p-8 mx-auto w-full lg:w-full">
             <?php if(isset($_SESSION['success'])):?>
                 <div class="mx-auto mt-4 w-2/3 text-sm lg:text-base lg:flex lg:justify-center " id="alert">
-                    <div class="p-2 bg-green-500 items-center text-indigo-100 leading-none rounded-full flex lg:inline-flex relative" role="alert" >
+                    <div class="p-2 bg-[#008A33] items-center text-indigo-100 leading-none rounded-full flex lg:inline-flex relative" role="alert" >
                         <span class="flex rounded-full bg-green-800 uppercase px-2 py-1 text-xs font-bold mr-3">Berhasil</span>
                         <span class="font-semibold mr-2 text-left flex-auto"><?= $_SESSION['success'] ?></span>
                         <span class="" id="close-btn">
@@ -102,9 +102,9 @@
                         </div>
                     </div>
                     <div class="mt-4 flex justify-end gap-4">
-                        <button id="edit-btn" type="button" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-8 rounded-full min-w-28" onclick="ubah()">Ubah</button>
-                        <button id="cancel-btn" type="button" class="hidden bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-8 rounded-full min-w-28" onclick="cancel()" >Batal</button>
-                        <button id="save-btn" type="submit" class="hidden bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-8 rounded-full min-w-28" onclick="">Simpan</button>
+                        <button id="edit-btn" type="button" class="bg-[#008A33] hover:bg-green-800 text-white font-bold py-2 px-8 rounded-full min-w-28" onclick="ubah()">Ubah</button>
+                        <button id="cancel-btn" type="button" class="hidden bg-[#FF0000] hover:bg-red-700 text-white font-bold py-2 px-8 rounded-full min-w-28" onclick="cancel()" >Batal</button>
+                        <button id="save-btn" type="submit" class="hidden bg-[#008A33] hover:bg-green-800 text-white font-bold py-2 px-8 rounded-full min-w-28" onclick="">Simpan</button>
                     </div>
                 </form>
             </div>

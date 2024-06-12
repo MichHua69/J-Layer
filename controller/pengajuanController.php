@@ -13,6 +13,65 @@ include 'assets/fpdf/fpdf.php';
 
 class pengajuanController
 {
+    public static function ajax()
+    {
+        $role = $_SESSION['role'];
+        $user = $_SESSION['user'];
+        $statusValidasi = status_validasiModel::getRelation();
+        $statusKonfirmasi = status_konfirmasiModel::getRelation();
+        $peternak = peternakModel::getRelation();
+
+        $data = [
+            'user' => $user,
+            'role' => $role
+        ];
+
+        if ($role == 3) {
+            $limit = 5;
+            $total_row = pengajuanModel::getTotalByIdPeternak();
+            $total_page = ceil($total_row / $limit);
+            $current_page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+            $pengajuan = pengajuanModel::getByIdPeternak($user['id'], $limit, $current_page);
+            $data['pengajuan'] = $pengajuan;
+        } else if ($role == 2) {
+            $tempat_pengambilan = tempat_pengambilanModel::getByIdKepala($user['id']);
+            $limit = 5;
+            $total_row = validasiModel::getTotalByIdTempat($tempat_pengambilan['id']);
+            $total_page = ceil($total_row / $limit);
+            $current_page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+            $validasi = validasiModel::getByIdTempat($tempat_pengambilan['id'], $limit, $current_page);
+            $data['validasi'] = $validasi;
+        } else {
+            $limit = 5;
+            $total_row = pengajuanModel::getTotal();
+            $total_page = ceil($total_row / $limit);
+            $current_page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+            $pengajuan = pengajuanModel::getAll($limit, $current_page);
+            $data['pengajuan'] = $pengajuan;
+        }
+
+        if ($role != 2) {
+            foreach ($data['pengajuan'] as &$item) {
+                $item['status_validasi'] = $statusValidasi[$item['id_status_validasi']]['status'];
+                $item['peternak'] = $peternak[$item['id_peternak']]['nama'];
+                $item['status_konfirmasi'] = $statusKonfirmasi[$item['id_status_konfirmasi']]['status'];
+            }
+        } else {
+            foreach ($data['validasi'] as &$item) {
+                $pengajuan = pengajuanModel::getByIdValidasi($item['id']);
+                $item['pengajuan'] = $pengajuan;
+                $item['status_validasi'] = $statusValidasi[$item['pengajuan']['id_status_validasi']]['status'];
+                $item['status_konfirmasi'] = $statusKonfirmasi[$item['pengajuan']['id_status_konfirmasi']]['status'];
+            }
+        }
+
+        $data['total_pages'] = $total_page;
+        $data['current_page'] = $current_page;
+
+        header('Content-Type: application/json');
+        echo json_encode($data);
+    }
+
     public static function showPengajuan()
     {   
         $role = $_SESSION['role'];
@@ -113,6 +172,7 @@ class pengajuanController
 
         if(isset($_SESSION['error'])) {
             header('Location: ' . urlpath('tambahpengajuan'));
+            exit();
         }
         // Prepare initial data for insertion
         $data = [
@@ -159,6 +219,7 @@ class pengajuanController
         move_uploaded_file($foto_usaha['tmp_name'], $foto_usahaPath);
         $_SESSION['success'] = 'Pengajuan Berhasil Dibuat';
         header('Location: '.urlpath('pengajuan'));
+        exit(); 
     }
 
     public static function showEditPengajuan() 
@@ -236,7 +297,7 @@ class pengajuanController
         }
     
         // Save the updated data to the database
-        // var_dump($data);
+        var_dump($data);
         pengajuanModel::update($data);
     
         // Redirect to a relevant page, e.g., the pengajuan overview

@@ -113,6 +113,13 @@ class pengajuanModel {
         $stmt->bind_param("ss", $foto_surat_usaha, $id);
         $stmt->execute();
     }
+    
+    if (isset($data['foto_peternakan'])) {
+        $query = "UPDATE `pengajuan` SET `foto_peternakan`=? WHERE `id`=?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("ss", $foto_peternakan, $id);
+        $stmt->execute();
+    }
 
     if (isset($data['id_status_validasi'])) {
         $query = "UPDATE `pengajuan` SET `id_status_validasi`=? WHERE `id`=?";

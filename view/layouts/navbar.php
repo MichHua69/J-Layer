@@ -1,4 +1,4 @@
-<nav class="bg-[#FFC100] px-4 py-2 fixed w-full z-40">
+<nav class="bg-[#FF5F00] px-4 py-2 fixed w-full z-40">
     <div class="container mx-auto grid grid-cols-3 gap-4 relative items-center">
         <img src="assets/images/logo.png" class="h-16" alt="">
         <div class="flex items-center lg:hidden">
@@ -19,7 +19,7 @@
             <button onclick="window.location.href='<?= urlpath('profil')?>';">
                 <i data-feather="user" class="stroke-white w-10 h-10 rounded-full border-[3px] border-white"></i>
             </button>
-            <button id='logout-btn' class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="window.location.href='<?= urlpath('logout')?>'">Logout</button>
+            <button id='logout-btn' class="bg-white hover:bg-[#FFC100] text-red-500 hover:text-white font-bold py-2 px-4 rounded" onclick="window.location.href='<?= urlpath('logout')?>'">Logout</button>
         </div>
     </div>
 </nav>
@@ -41,7 +41,7 @@
                 <i data-feather="user" class="stroke-white w-10 h-10 rounded-full border-[3px] border-white "></i>
                 <p class=" right-4 left-4 text-white font-semibold">Profil</p>
             </button>
-            <button id='logout-btn' class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded absolute bottom-4 right-4 left-4" onclick="window.location.href='<?= urlpath('logout')?>'">Logout</button>
+            <button id='logout-btn' class="bg-[#FF0000] hover:bg-red-700 text-white font-bold py-2 px-4 rounded absolute bottom-4 right-4 left-4" onclick="window.location.href='<?= urlpath('logout')?>'">Logout</button>
             <!-- <div class="absolute bottom-4">
             </div> -->
         </div>
@@ -53,8 +53,8 @@
         <h3 class="text-lg mb-4 font-bold text-center">Logout</h3>
         <p class="text-center">Apakah anda yakin untuk logout?</p>
         <div class="flex items-center justify-center mt-4">
-            <button type="button" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700 mr-4 w-1/3" id="batalLogout" onclick="closeModal()">Tidak</button>
-            <button type="button" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700 w-1/3" onclick="document.getElementById('formLogout').submit()">Ya</button>
+            <button type="button" class="bg-[#FF0000] text-white py-2 px-4 rounded hover:bg-red-700 mr-4 w-1/3" id="batalLogout" onclick="closeModal()">Tidak</button>
+            <button type="button" class="bg-[#008A33] text-white py-2 px-4 rounded hover:bg-green-800 w-1/3" onclick="document.getElementById('formLogout').submit()">Ya</button>
         </div>
         <!-- <form id="formLogout" action="{{ route('logout') }}" method="POST" class="hidden">
             
