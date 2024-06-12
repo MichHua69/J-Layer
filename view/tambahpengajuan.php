@@ -28,7 +28,9 @@
                                 name="alamat"
                                 id="alamat"
                                 value="<?= isset($_SESSION['alamat']) ? htmlspecialchars($_SESSION['alamat']) : '' ?>"
+                                required
                             />
+                            <p class="text-gray-600 italic text-sm">Contoh : Jl. Mastrip XX, Kel. Sumbersari, Kec. Sumbersari</p>
                             <?php if (isset($_SESSION['error']['alamat'])): ?>
                             <p class="text-red-500 text-xs italic"><?= $_SESSION['error']['alamat'] ?></p>
                             <?php endif ?>
@@ -36,7 +38,7 @@
                         
                         <div class="mt-4">
                             <label class="font-semibold" for="jumlah_populasi">Jumlah Populasi Ayam</label>
-                            <select class="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-gray-500 focus:z-10 sm:text-sm" name="jumlah_populasi" id="jumlah_populasi">
+                            <select class="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-gray-500 focus:z-10 sm:text-sm" name="jumlah_populasi" id="jumlah_populasi" required>
                                 <option value="" selected hidden>Pilih Jumlah Populasi</option>
                                 <?php foreach ($jumlah_populasi as $jumlah) { ?>
                                     <option value="<?= htmlspecialchars($jumlah['id']) ?>" <?= isset($_SESSION['id_jumlah_populasi_ayam']) && $_SESSION['id_jumlah_populasi_ayam'] == $jumlah['id'] ? 'selected' : '' ?>>
@@ -53,15 +55,19 @@
                             <div class="hidden h-full w-full lg:w-2/3 lg:h-72 overflow-y-scroll rounded-md preview mb-2" id="foto_peternakan-container" style="scrollbar-width: none;">
                                 <img id="foto_peternakan-preview" src="#" alt="Foto Peternakan" class="hidden w-full object-cover object-top" />
                             </div>
-                            <div class="relative w-full mb-4 mt-1">
+                            <div class="relative w-full mt-1">
                                 <input
                                     id="foto_peternakan"
                                     name="foto_peternakan"
                                     type="file"
                                     class="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-gray-500 focus:z-10 sm:text-sm"
                                     onchange="previewImage(this)"
+                                    required
                                 />
                             </div>
+                            <?php if(isset($_SESSION['error']['foto_peternakan'])): ?>
+                                <p class="text-red-500 text-xs italic"><?= $_SESSION['error']['foto_peternakan']?></p>
+                            <?php endif?>
                         </div>
 
                         <div class="mt-4">
@@ -76,6 +82,7 @@
                                     type="file"
                                     class="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:ring-[#FF5F00] focus:border-gray-500 focus:z-10 sm:text-sm"
                                     onchange="previewImageUsaha(this)"
+                                    required
                                 />
                             </div>
                         </div>
@@ -92,6 +99,7 @@
                                 min="1"
                                 step="1"
                                 value="<?= isset($_SESSION['jumlah_pakan']) ? htmlspecialchars($_SESSION['jumlah_pakan']) : '' ?>"
+                                required
                             />
                             <?php if (isset($_SESSION['error']['jumlah_pakan'])): ?>
                             <p class="text-red-500 text-xs italic"><?= $_SESSION['error']['jumlah_pakan'] ?></p>
@@ -111,12 +119,14 @@
             </div>
         </div>
     </section>
-    <?php unset($_SESSION['error']['alamat']); ?>
-    <?php unset($_SESSION['error']['jumlah_populasi']); ?>
-    <?php unset($_SESSION['error']['jumlah_pakan']); ?>
-    <?php unset($_SESSION['alamat']); ?>
-    <?php unset($_SESSION['id_jumlah_populasi_ayam']); ?>
-    <?php unset($_SESSION['jumlah_pakan']); ?>
+    <?php if (isset($_SESSION['error']['alamat'])) { unset($_SESSION['error']['alamat']); } ?>
+    <?php if (isset($_SESSION['error']['jumlah_populasi'])) { unset($_SESSION['error']['jumlah_populasi']); } ?>
+    <?php if (isset($_SESSION['error']['jumlah_pakan'])) { unset($_SESSION['error']['jumlah_pakan']); } ?>
+    <?php if (isset($_SESSION['error']['foto_peternakan'])) { unset($_SESSION['error']['foto_peternakan']); } ?>
+    <?php if (isset($_SESSION['alamat'])) { unset($_SESSION['alamat']); } ?>
+    <?php if (isset($_SESSION['id_jumlah_populasi_ayam'])) { unset($_SESSION['id_jumlah_populasi_ayam']); } ?>
+    <?php if (isset($_SESSION['jumlah_pakan'])) { unset($_SESSION['jumlah_pakan']); } ?>
+    <?php if (isset($_SESSION['error'])) { unset($_SESSION['error']); } ?>
     <!-- Footer -->
     <?php include 'layouts/footer.php'; ?>
 

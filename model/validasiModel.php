@@ -33,7 +33,7 @@ class validasiModel {
         global $conn;
 
         $offset = ($currentPage - 1) * $limit;
-        $query = "SELECT * FROM `validasi` WHERE `id_tempat_pengambilan` = ? LIMIT ? OFFSET ?";
+        $query = "SELECT * FROM `validasi` WHERE `id_tempat_pengambilan` = ? ORDER BY `id` DESC LIMIT ? OFFSET ? ";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("isi", $id, $limit, $offset);
         $stmt->execute();

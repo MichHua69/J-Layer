@@ -55,7 +55,7 @@
                             class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-lg font-medium rounded-md text-white bg-[#FF5F00] hover:bg-[#FFFAE6] hover:text-[#FF5F00]"
                             type="submit" id="submit-btn"
                         >
-                            Validasi
+                            Konfirmasi
                         </button>
                     </div>
                     

@@ -89,8 +89,21 @@
         </div>
         
         </section>
-    <?php if(isset($_SESSION['error'])) unset($_SESSION['error']);
-    if(isset($_SESSION['success'])) unset($_SESSION['success']); ?>
+    <?php 
+    if(isset($_SESSION['error'])) unset($_SESSION['error']);
+    if(isset($_SESSION['success'])) unset($_SESSION['success']); 
+
+    if(isset($_SESSION['name'])) unset($_SESSION['name']);
+    if(isset($_SESSION['email'])) unset($_SESSION['email']);
+    if(isset($_SESSION['nik'])) unset($_SESSION['nik']);
+    if(isset($_SESSION['telepon'])) unset($_SESSION['telepon']);
+    if(isset($_SESSION['wilayah'])) unset($_SESSION['wilayah']);
+    if(isset($_SESSION['noSurat'])) unset($_SESSION['noSurat']);
+    if(isset($_SESSION['password'])) unset($_SESSION['password']);
+    if(isset($_SESSION['password_confirmation'])) unset($_SESSION['password_confirmation']);
+    if(isset($_SESSION['password_kepala'])) unset($_SESSION['password_kepala']);
+    if(isset($_SESSION['password_confirmation_kepala'])) unset($_SESSION['password_confirmation_kepala']);
+    ?>
 
     <?php include 'layouts/footer.php'; ?>
     <script>

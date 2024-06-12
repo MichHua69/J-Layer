@@ -71,14 +71,6 @@ class pengajuanController
 
         }
     }
-    public static function fetchPengajuan() {
-        // Misalnya, ambil data pengajuan sesuai kebutuhan (pagination, status, dsb.)
-        $current_page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-        $limit = 5; // Tentukan limit sesuai kebutuhan
-        $pengajuan = pengajuanModel::getAll($limit, $current_page); // Anda harus menyesuaikan fungsi ini
-    
-        echo json_encode($pengajuan);
-    }
     
     public static function showTambahPengajuan()
     {   
@@ -103,71 +95,70 @@ class pengajuanController
         $_SESSION['jumlah_populasi_ayam'] = $jumlah_populasi_ayam['jumlah'];
         $_SESSION['jumlah_pakan'] = $jumlah_pakan;
 
+        $allowedExtensions = ['jpg', 'jpeg', 'png'];
 
-        if(empty($alamat)) {
-            $_SESSION['error']['alamat'] = 'Alamat harus diisi';
+        if ($foto_peternakan) {
+            $fileExtension = pathinfo($foto_peternakan['name'], PATHINFO_EXTENSION);
+            if (!in_array(strtolower($fileExtension), $allowedExtensions)) {
+                $_SESSION['error']['foto_peternakan'] = 'Foto peternakan harus dalam format .jpg,.jpeg atau .png.';
+            }
         }
-        if(empty($jumlah_pakan)) {
-            $_SESSION['error']['jumlah_pakan'] = 'Jumlah pakan harus diisi';
+
+        if ($foto_usaha) {
+            $fileExtension = pathinfo($foto_usaha['name'], PATHINFO_EXTENSION);
+            if ($foto_usaha['error'] !== UPLOAD_ERR_OK || !in_array(strtolower($fileExtension), $allowedExtensions)) {
+                $_SESSION['error']['foto_usaha'] = 'Foto usaha harus dalam format .jpg,.jpeg atau .png.';
+            }
         }
-        if(empty($jumlah_populasi)) {
-            $_SESSION['error']['jumlah_populasi'] = 'Jumlah populasi harus diisi';
-        } 
-    
-        if (!$foto_peternakan || $foto_peternakan['error'] !== UPLOAD_ERR_OK) {
-            
-        }
-        if (!$foto_usaha || $foto_usaha['error'] !== UPLOAD_ERR_OK) {
-            
-        }
-        
-        if(isset($_SESSION['error']['alamat']) || isset($_SESSION['error']['jumlah_pakan']) || isset($_SESSION['error']['jumlah_populasi'])) {
+
+        if(isset($_SESSION['error'])) {
             header('Location: ' . urlpath('tambahpengajuan'));
         }
-        // // Prepare initial data for insertion
-        // $data = [
-        //     'alamat' => $alamat,
-        //     'jumlah_pakan' => $jumlah_pakan,
-        //     'id_jumlah_populasi_ayam' => intval($jumlah_populasi),
-        //     'foto_peternakan' => null,
-        //     'foto_usaha' => null,
-        //     'id_peternak' => $user['id'],
-        //     'id_status_validasi' => 1, // Assuming default status
-        //     'id_status_konfirmasi' => 1, // Assuming default status
-        //     'id_validasi' => null, // Assuming default ID
-        //     'id_konfirmasi' => null // Assuming default ID
-        // ];
+        // Prepare initial data for insertion
+        $data = [
+            'alamat' => $alamat,
+            'jumlah_pakan' => $jumlah_pakan,
+            'id_jumlah_populasi_ayam' => intval($jumlah_populasi),
+            'foto_peternakan' => null,
+            'foto_usaha' => null,
+            'id_peternak' => $user['id'],
+            'id_status_validasi' => 1, // Assuming default status
+            'id_status_konfirmasi' => 1, // Assuming default status
+            'id_validasi' => null, // Assuming default ID
+            'id_konfirmasi' => null // Assuming default ID
+        ];
 
-        // $pengajuan_id = pengajuanModel::create($data);
-        // $foto_peternakanName = $user['nama'] . '-' . $pengajuan_id . '-foto_peternakan.' . pathinfo($foto_peternakan['name'], PATHINFO_EXTENSION);
-        // $foto_usahaName = $user['nama'] . '-' . $pengajuan_id . '-foto_usaha.' . pathinfo($foto_usaha['name'], PATHINFO_EXTENSION);
+        $pengajuan_id = pengajuanModel::create($data);
+        $foto_peternakanName = $user['nama'] . '-' . $pengajuan_id . '-foto_peternakan.' . pathinfo($foto_peternakan['name'], PATHINFO_EXTENSION);
+        $foto_usahaName = $user['nama'] . '-' . $pengajuan_id . '-foto_usaha.' . pathinfo($foto_usaha['name'], PATHINFO_EXTENSION);
     
-        // // Upload files
-        // $foto_peternakanPath = 'assets/pengajuan/foto_peternakan/' . $foto_peternakanName;
-        // $foto_usahaPath = 'assets/pengajuan/foto_usaha/' . $foto_usahaName;
+        // Upload files
+        $foto_peternakanPath = 'assets/pengajuan/foto_peternakan/' . $foto_peternakanName;
+        $foto_usahaPath = 'assets/pengajuan/foto_usaha/' . $foto_usahaName;
         
-        // $validasi_id = validasiModel::create();
-        // $konfirmasi_id = konfirmasiModel::create();
-        // // Update the record with the file paths
-        // $updateData = [
-        //     'id' => $pengajuan_id,
-        //     'foto_peternakan' => $foto_peternakanName,
-        //     'foto_usaha' => $foto_usahaName,
-        //     'id_validasi' => $validasi_id,
-        //     'id_konfirmasi' => $konfirmasi_id
-        // ];
-        // // var_dump($updateData);
-        // $create = pengajuanModel::secondCreate($updateData);
+        $validasi_id = validasiModel::create();
+        $konfirmasi_id = konfirmasiModel::create();
+        // Update the record with the file paths
+        $updateData = [
+            'id' => $pengajuan_id,
+            'foto_peternakan' => $foto_peternakanName,
+            'foto_usaha' => $foto_usahaName,
+            'id_validasi' => $validasi_id,
+            'id_konfirmasi' => $konfirmasi_id
+        ];
+        // var_dump($updateData);
+        $create = pengajuanModel::secondCreate($updateData);
         
-        // if (!file_exists('assets/pengajuan/foto_peternakan/')) {
-        //     mkdir('assets/pengajuan/foto_peternakan/', 0777, true);
-        // }
-        // if (!file_exists('assets/pengajuan/foto_usaha/')) {
-        //     mkdir('assets/pengajuan/foto_usaha/', 0777, true);
-        // }
-        // move_uploaded_file($foto_peternakan['tmp_name'], $foto_peternakanPath);
-        // move_uploaded_file($foto_usaha['tmp_name'], $foto_usahaPath);
-        // header('Location: '.urlpath('pengajuan'));
+        if (!file_exists('assets/pengajuan/foto_peternakan/')) {
+            mkdir('assets/pengajuan/foto_peternakan/', 0777, true);
+        }
+        if (!file_exists('assets/pengajuan/foto_usaha/')) {
+            mkdir('assets/pengajuan/foto_usaha/', 0777, true);
+        }
+        move_uploaded_file($foto_peternakan['tmp_name'], $foto_peternakanPath);
+        move_uploaded_file($foto_usaha['tmp_name'], $foto_usahaPath);
+        $_SESSION['success'] = 'Pengajuan Berhasil Dibuat';
+        header('Location: '.urlpath('pengajuan'));
     }
 
     public static function showEditPengajuan() 
@@ -249,10 +240,25 @@ class pengajuanController
         pengajuanModel::update($data);
     
         // Redirect to a relevant page, e.g., the pengajuan overview
-        header('Location: ' . urlpath('pengajuan'));
+        $_SESSION['success'] = 'Pengajuan Berhasil Diubah';
+        header('Location: ' . urlpath('detailpengajuan').'?id='.$pengajuan['id']);
         exit();
     }
     
+    public static function deletePengajuan()
+    {
+        $pengajuan_id = $_POST['pengajuan_id'];
+        $pengajuan = pengajuanModel::getById($pengajuan_id);
+        var_dump($pengajuan);
+        unlink('assets/pengajuan/foto_peternakan/'.$pengajuan['foto_peternakan']);
+        unlink('assets/pengajuan/foto_usaha/'.$pengajuan['foto_surat_usaha']);
+        pengajuanModel::delete($pengajuan_id);
+
+        $_SESSION['success'] = 'Pengajuan Berhasil Dihapus';
+        header('Location: ' . urlpath('pengajuan'));
+        exit();
+    }
+
     public static function showDetailPengajuan()
     {
         $role = $_SESSION['role'];
@@ -284,61 +290,65 @@ class pengajuanController
                 'id' => intval($_GET['id']),
                 'id_status_validasi' => 2,
             ];
+            pengajuanModel::update($data);
+
+            $validasi = validasiModel::getById(intval($_GET['id']));
+            $pengajuan = pengajuanModel::getByIdvalidasi($validasi['id']);
+            $peternak = peternakModel::getById($pengajuan['id_peternak']);
+
+            $pdf = new FPDF();
+            $pdf->AddPage("", "A4");
+            $pdf->image('assets/images/validasi.jpg', 0, 0, 210);
+
+            // Tambahkan teks di posisi tertentu
+            $pdf->SetFont('Arial', '', 12);
+
+            $x = 70;
+            $y = 127;
+            $pdf->SetXY($x, $y);
+            $pdf->Text($x, $y, $peternak['nama']);
+
+            $x = 52;
+            $y = 133.5;
+            $pdf->SetXY($x, $y);
+            $pdf->Text($x, $y, $validasi['jumlah_pakan'].' kg');
+
+            $x = 63;
+            $y = 140;
+            $pdf->SetXY($x, $y);
+            $pdf->Text($x, $y, date('d/m/Y', strtotime($validasi['tanggal_pengambilan'])));
+
+            $x = 63;
+            $y = 146.2;
+            $pdf->SetXY($x, $y);
+            $pdf->Text($x, $y, $validasi['tempat_pengambilan']);
+
+            // Tentukan direktori dan nama file
+            $directory = 'assets/validasi/surat_validasi/';  // Ganti dengan path direktori yang diinginkan
+            $filename = $peternak['nama'].'-'.$validasi['id'].'.pdf';
+
+            // Pastikan direktori sudah ada atau buat jika belum ada
+            if (!file_exists($directory)) {
+                mkdir($directory, 0755, true);
+            }
+
+            // Simpan PDF ke direktori yang ditentukan
+            $pdf->Output($directory . $filename, 'F');
+            $data = [
+                'id' => intval($_GET['id']),
+                'surat_validasi' => $filename
+            ];
+
+            validasiModel::update($data);
         } else {
             $data = [
                 'id' => intval($_GET['id']),
                 'id_status_validasi' => 3,
             ];
+            pengajuanModel::update($data);
+
         }
-        pengajuanModel::update($data);
-        $validasi = validasiModel::getById(intval($_GET['id']));
-        $pengajuan = pengajuanModel::getByIdvalidasi($validasi['id']);
-        $peternak = peternakModel::getById($pengajuan['id_peternak']);
-
-        $pdf = new FPDF();
-        $pdf->AddPage("", "A4");
-        $pdf->image('assets/images/validasi.jpg', 0, 0, 210);
-
-        // Tambahkan teks di posisi tertentu
-        $pdf->SetFont('Arial', '', 12);
-
-        $x = 70;
-        $y = 127;
-        $pdf->SetXY($x, $y);
-        $pdf->Text($x, $y, $peternak['nama']);
-
-        $x = 52;
-        $y = 133.5;
-        $pdf->SetXY($x, $y);
-        $pdf->Text($x, $y, $validasi['jumlah_pakan'].' kg');
-
-        $x = 63;
-        $y = 140;
-        $pdf->SetXY($x, $y);
-        $pdf->Text($x, $y, $validasi['tanggal_pengambilan']);
-
-        $x = 63;
-        $y = 146.2;
-        $pdf->SetXY($x, $y);
-        $pdf->Text($x, $y, $validasi['tempat_pengambilan']);
-
-        // Tentukan direktori dan nama file
-        $directory = 'assets/validasi/surat_validasi/';  // Ganti dengan path direktori yang diinginkan
-        $filename = $peternak['nama'].'-'.$validasi['id'].'.pdf';
-
-        // Pastikan direktori sudah ada atau buat jika belum ada
-        if (!file_exists($directory)) {
-            mkdir($directory, 0755, true);
-        }
-
-        // Simpan PDF ke direktori yang ditentukan
-        $pdf->Output($directory . $filename, 'F');
-        $data = [
-            'id' => intval($_GET['id']),
-            'surat_validasi' => $filename
-        ];
-
-        validasiModel::update($data);
+        
         header('Location: '.urlpath('pengajuan'));
         exit();
 
@@ -372,6 +382,7 @@ class pengajuanController
             'id' => $konfirmasi['id'],
             'foto_bukti' => $foto_buktiName,
             'tanggal_pengambilan' => $tanggal_pengambilan,
+            'id_kepala_kelompok_ternak' => $user['id']
         ];
 
         konfirmasiModel::update($data);
@@ -419,6 +430,26 @@ class pengajuanController
         }
         // header('Location: ' .urlpath('pengajuan'));
         // exit();
+    }
+
+    public static function showDetailValidasi() {
+        $role = $_SESSION['role'];
+        $user = $_SESSION['user'];
+        $validasi = validasiModel::getById(intval($_GET['id']));
+        $tempat_pengambilan = tempat_pengambilanModel::getById($validasi['id_tempat_pengambilan']);
+        $validasi['tempat_pengambilan'] = $tempat_pengambilan['nama'];
+        // $pengajuan = pengajuanModel::getByIdvalidasi($validasi['id']);
+        // $peternak = peternakModel::getById($pengajuan['id_peternak']);
+        view('detailvalidasi',['role' => $role, 'user' => $user, 'validasi' => $validasi]);
+    }
+
+    public static function showDetailKonfirmasi() {
+        $role = $_SESSION['role'];
+        $user = $_SESSION['user'];
+        $konfirmasi = konfirmasiModel::getById(intval($_GET['id']));
+        $pengajuan = pengajuanModel::getByIdKonfirmasi($konfirmasi['id']);
+        $peternak = peternakModel::getById($pengajuan['id_peternak']);
+        view('detailkonfirmasi',['role' => $role, 'user' => $user, 'konfirmasi' => $konfirmasi, 'peternak' => $peternak]);
     }
 }
 ?>

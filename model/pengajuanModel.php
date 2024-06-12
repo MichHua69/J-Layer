@@ -138,5 +138,13 @@ class pengajuanModel {
         $result = $stmt->get_result()->fetch_assoc();
         return $result['total'];
     }
+    public static function delete($id) {
+        global $conn;
+        $query = "DELETE FROM `pengajuan` WHERE `id` =?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        return $stmt->get_result();
+    }
 }
 ?>

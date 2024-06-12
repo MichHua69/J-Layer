@@ -33,6 +33,12 @@ class konfirmasiModel {
             $stmt = $conn->prepare($query);
             $stmt->execute();
         }
+        if (isset($data['id_kepala_kelompok_ternak'])) {
+            $query = "UPDATE `konfirmasi` SET `id_kepala_kelompok_ternak` =? WHERE `id` =?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("ii", $id_kepala_kelompok_ternak, $id);
+            $stmt->execute();
+        }
     }
 }
 ?>

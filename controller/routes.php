@@ -25,13 +25,18 @@ route('tambahpengajuan', 'post', 'pengajuanController::storeTambahPengajuan');
 route('editpengajuan', 'get', 'pengajuanController::showEditPengajuan');
 route('editpengajuan', 'post', 'pengajuanController::storeEditPengajuan');
 
+route('deletepengajuan', 'post', 'pengajuanController::deletePengajuan');
+
 route('detailpengajuan', 'get', 'pengajuanController::showDetailPengajuan');
 route('detailpengajuan', 'post', 'pengajuanController::storeDetailPengajuan');
 
 route('validasi', 'get' ,'pengajuanController::unduhValidasi');
+route('detailvalidasi' , 'get' ,'pengajuanController::showDetailValidasi');
 
 route('konfirmasi', 'get', 'pengajuanController::showKonfirmasi');
 route('konfirmasi', 'post', 'pengajuanController::storeKonfirmasi');
+
+route('detailkonfirmasi','get', 'pengajuanController::showDetailKonfirmasi');
 
 route('profil', 'get', 'profilController::showProfil');
 route('profil', 'post', 'profilController::storeProfil');

@@ -92,6 +92,10 @@ class dashboardController
                 'thumbnail' => $filename
             ];
             $create = beritaModel::update($data);
+            unset($_SESSION['judul']);
+            unset($_SESSION['deskripsi']);
+
+            $_SESSION['success'] = 'Berita Berhasil Ditambahkan';
             header('Location: '.urlpath('dashboard'));
     }
         }

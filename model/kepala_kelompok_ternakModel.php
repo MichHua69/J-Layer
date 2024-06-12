@@ -59,6 +59,13 @@ class kepala_kelompok_ternakModel{
             $stmt->bind_param("ss", $data['no_telepon'], $data['id']);
             $stmt->execute();
         }
+        if(isset($data['password'])) {
+            $data['password'] = password_hash($data['password'],PASSWORD_DEFAULT);
+            $query = "UPDATE `kepala_kelompok_ternak` SET `password` = ? WHERE `id` = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("ss", $data['password'], $data['id']);
+            $stmt->execute();
+        }
     }
 }
 ?>

@@ -48,31 +48,49 @@ class authModel  {
 
     } 
 
-    public static function checkEmailUnique($email) {
+    public static function checkEmailUnique($email, $user_id = null) {
         global $conn;
+    
         // Prepare the SQL statements for each table
-        $stmt1 = $conn->prepare("SELECT * FROM `peternak` WHERE `email` = ?");
-        $stmt2 = $conn->prepare("SELECT * FROM `dinas_peternakan` WHERE `email` = ?");
-        $stmt3 = $conn->prepare("SELECT * FROM `kepala_kelompok_ternak` WHERE `email` = ?");
-
-        // Bind the email parameter to each statement
-        $stmt1->bind_param("s", $email);
-        $stmt2->bind_param("s", $email);
-        $stmt3->bind_param("s", $email);
-
+        $query1 = "SELECT * FROM `peternak` WHERE `email` = ?";
+        $query2 = "SELECT * FROM `dinas_peternakan` WHERE `email` = ?";
+        $query3 = "SELECT * FROM `kepala_kelompok_ternak` WHERE `email` = ?";
+    
+        if ($user_id !== null) {
+            $query1 .= " AND `id` != ?";
+            $query2 .= " AND `id` != ?";
+            $query3 .= " AND `id` != ?";
+        }
+    
+        // Prepare the statements
+        $stmt1 = $conn->prepare($query1);
+        $stmt2 = $conn->prepare($query2);
+        $stmt3 = $conn->prepare($query3);
+    
+        // Bind the email (and user_id if provided) parameter to each statement
+        if ($user_id !== null) {
+            $stmt1->bind_param("si", $email, $user_id);
+            $stmt2->bind_param("si", $email, $user_id);
+            $stmt3->bind_param("si", $email, $user_id);
+        } else {
+            $stmt1->bind_param("s", $email);
+            $stmt2->bind_param("s", $email);
+            $stmt3->bind_param("s", $email);
+        }
+    
         // Execute each statement
         $stmt1->execute();
         $result1 = $stmt1->get_result()->fetch_assoc();
         $stmt1->close();
-    
+        
         $stmt2->execute();
         $result2 = $stmt2->get_result()->fetch_assoc();
         $stmt2->close();
-    
+        
         $stmt3->execute();
         $result3 = $stmt3->get_result()->fetch_assoc();
         $stmt3->close();
-
+    
         // Check if any result is not null
         if ($result1 !== null || $result2 !== null || $result3 !== null) {
             return false; // Email is already registered in one of the tables
@@ -80,6 +98,7 @@ class authModel  {
             return true; // Email is unique
         }
     }
+    
 
     public static function checkNIKUnique($NIK) {
         global $conn;
@@ -110,31 +129,50 @@ class authModel  {
         }
     }
 
-    public static function checkTeleponUnique($no_telepon) {
+    public static function checkTeleponUnique($no_telepon, $user_id = null) {
         global $conn;
+    
         // Prepare the SQL statements for each table
-        $stmt1 = $conn->prepare("SELECT * FROM `peternak` WHERE `no_telepon` = ?");
-        $stmt2 = $conn->prepare("SELECT * FROM `dinas_peternakan` WHERE `no_telepon` = ?");
-        $stmt3 = $conn->prepare("SELECT * FROM `kepala_kelompok_ternak` WHERE `no_telepon` = ?");
-
-        // Bind the no_telepon parameter to each statement
-        $stmt1->bind_param("s", $no_telepon);
-        $stmt2->bind_param("s", $no_telepon);
-        $stmt3->bind_param("s", $no_telepon);
-
+        $query1 = "SELECT * FROM `peternak` WHERE `no_telepon` = ?";
+        $query2 = "SELECT * FROM `dinas_peternakan` WHERE `no_telepon` = ?";
+        $query3 = "SELECT * FROM `kepala_kelompok_ternak` WHERE `no_telepon` = ?";
+    
+        // Append condition to exclude the current user if user_id is provided
+        if ($user_id !== null) {
+            $query1 .= " AND `id` != ?";
+            $query2 .= " AND `id` != ?";
+            $query3 .= " AND `id` != ?";
+        }
+    
+        // Prepare the statements
+        $stmt1 = $conn->prepare($query1);
+        $stmt2 = $conn->prepare($query2);
+        $stmt3 = $conn->prepare($query3);
+    
+        // Bind the no_telepon (and user_id if provided) parameter to each statement
+        if ($user_id !== null) {
+            $stmt1->bind_param("si", $no_telepon, $user_id);
+            $stmt2->bind_param("si", $no_telepon, $user_id);
+            $stmt3->bind_param("si", $no_telepon, $user_id);
+        } else {
+            $stmt1->bind_param("s", $no_telepon);
+            $stmt2->bind_param("s", $no_telepon);
+            $stmt3->bind_param("s", $no_telepon);
+        }
+    
         // Execute each statement
         $stmt1->execute();
         $result1 = $stmt1->get_result()->fetch_assoc();
         $stmt1->close();
-    
+        
         $stmt2->execute();
         $result2 = $stmt2->get_result()->fetch_assoc();
         $stmt2->close();
-    
+        
         $stmt3->execute();
         $result3 = $stmt3->get_result()->fetch_assoc();
         $stmt3->close();
-
+    
         // Check if any result is not null
         if ($result1 !== null || $result2 !== null || $result3 !== null) {
             return false; // no_telepon is already registered in one of the tables
@@ -142,6 +180,8 @@ class authModel  {
             return true; // no_telepon is unique
         }
     }
+    
+    
 
     public static function checkNoSuratUnique($noSurat) {
         global $conn;

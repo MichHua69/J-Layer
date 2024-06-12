@@ -142,7 +142,7 @@ class authController{
                         'email' => $email,
                         'nik' => $nik,
                         'telepon' => $telepon,
-                        'password' => password_hash($password, PASSWORD_DEFAULT), // Secure password hashing
+                        'password' => $password,
                         'noSurat' => $noSurat,
                         'wilayah' => $wilayah,
                     ];
@@ -160,13 +160,14 @@ class authController{
                         'email' => $email,
                         'nik' => $nik,
                         'telepon' => $telepon,
-                        'password' => password_hash($password, PASSWORD_DEFAULT), // Secure password hashing
+                        'password' => $password, 
                     ];
                     peternakModel::create($data);
                     // var_dump('cek');
                 }
                 error_log("User registered: " . print_r($data, true));
                 // Redirect to login after successful registration
+                
                 $_SESSION['success'] = 'Akun anda berhasil dibuat! Silahkan login';
                 header("Location: " . urlpath('login'));
                 exit();

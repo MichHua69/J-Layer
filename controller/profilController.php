@@ -25,6 +25,26 @@ class profilController
         $user = $_SESSION['user'];
         // var_dump($user);
         $data = $_POST;
+        var_dump($data);
+        $_SESSION['action'] = $data['action'];
+        $checkEmailUnique = authModel::checkEmailUnique($data['email'], $user['id']);
+        if ($checkEmailUnique == false) {
+            $_SESSION['error']['email'] = 'Email sudah terdaftar';
+        }
+        $checkTeleponUnique = authModel::checkTeleponUnique($data['no_telepon'], $user['id']);
+        if ($checkTeleponUnique == false) {
+            $_SESSION['error']['no_telepon'] = 'Telepon sudah terdaftar';
+        }
+        if (strlen($data['password']) < 8 || strlen($data['password']) > 10) {
+            $_SESSION['error']['password'] = 'Password harus 8-10 karakter';
+        }
+        // var_dump($_SESSION['error']);
+        if (isset($_SESSION['error'])) {
+            header('Location: ' . urlPath('profil'));
+            exit();
+        }
+        // $_SESSION['action'] = '';
+        unset($_SESSION['action']);
         if ($role == 1) {
             $data['id'] = $user['id'];
             dinas_peternakanModel::update($data);
@@ -42,6 +62,7 @@ class profilController
             $user = peternakModel::getUser($data['email']);
             $_SESSION['user'] = $user;
         }
+        $_SESSION['success'] = 'Profil berhasil diubah';
         header('Location: ' . urlPath('profil'));
         exit();
     }

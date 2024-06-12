@@ -59,7 +59,7 @@
                         <div class="mt-4">
                             <label class="font-semibold" for="deskripsi">Deskripsi</label>
                             <input type="hidden" name="deskripsi" id="deskripsi">
-                            <div id="editor" class="h-72"><?= isset($_SESSION['deskripsi']) ? htmlspecialchars($_SESSION['deskripsi']) : '' ?></div>
+                            <div id="editor" class="h-72"><?= isset($_SESSION['deskripsi']) ? ($_SESSION['deskripsi']) : '' ?></div>
                             <?php if (isset($_SESSION['error']['deskripsi'])): ?>
                             <p class="text-red-500 text-xs italic"><?= $_SESSION['error']['deskripsi'] ?></p>
                             <?php endif; ?>
